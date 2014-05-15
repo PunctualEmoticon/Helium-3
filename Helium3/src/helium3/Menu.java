@@ -32,6 +32,8 @@ import java.awt.*;
  */
 public class Menu 
 {
+    JFrame mainMenu;
+    JPanel pane;
     // Makes a new menu
     public Menu()
     {
@@ -41,35 +43,55 @@ public class Menu
     public void go()
     {
         // New Window
-        JFrame mainMenu = new JFrame();
-        JPanel pane = new JPanel();
+        mainMenu = new JFrame();
+        pane = new JPanel();
         mainMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pane.setLayout(new BoxLayout(pane,BoxLayout.Y_AXIS));
         DrawBack draw = new DrawBack();
-        //draw.drawBackround(pane);
+        pane.setBackground(new Color(0,0,0,0));
         
         
         //button creation
         JButton start = new JButton("New Game");
+        start.addActionListener(new newGameListener());
         JButton quit = new JButton("Quit Game");
+        //quit.addActionListener(new quitGameListener());
         pane.add(start);
         pane.add(quit);
         //Settiing buttons to be on frame
-        mainMenu.getContentPane().add(BorderLayout.SOUTH, pane);
+        mainMenu.getContentPane().add(BorderLayout.WEST, pane);
         mainMenu.getContentPane().add(draw);
         mainMenu.setSize(500,500);
         mainMenu.setVisible(true);
-        draw.repaint();
+        draw.repaint();       
     }
-    
+    //draws backround
     class DrawBack extends JPanel
     {
         @Override
         public void paint(Graphics g)
         {
-            System.out.println("lmnop");
             Image back = new ImageIcon("C:\\images\\back.jpg").getImage();
             g.drawImage(back,0,0,this);
+        }
+    }
+    //starts new game process
+    class newGameListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent event)
+        {
+            pane.setVisible(false);
+        }
+        
+    }
+    //exits app
+    class exitGameListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent event)
+        {
+           
         }
     }
 }
