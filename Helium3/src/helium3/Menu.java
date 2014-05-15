@@ -23,15 +23,24 @@
  SOFTWARE.
  */
 package helium3;
-
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
 /**
  *
- * @author matts_000
+ * @author Matt
  */
-public class Runner {
-    
-    public static void main(String[] args) {
-        Menu startMenu = new Menu();
-        startMenu.go();
+public class Menu 
+{
+    // Makes a new menue
+    public Menu()
+    {
     }
+    
+    //Method that acts.
+    public void go()
+    {
+        
+    }
+           
 }
