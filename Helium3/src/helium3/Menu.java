@@ -26,6 +26,7 @@ package helium3;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
+import java.util.*;
 /**
  *
  * @author Matt
@@ -34,6 +35,9 @@ public class Menu
 {
     JFrame mainMenu;
     JPanel pane;
+    JButton start;
+    JButton quit;
+    JButton player4;
     // Makes a new menu
     public Menu()
     {
@@ -52,9 +56,9 @@ public class Menu
         
         
         //button creation
-        JButton start = new JButton("New Game");
+        start = new JButton("New Game");
         start.addActionListener(new newGameListener());
-        JButton quit = new JButton("Quit Game");
+        quit = new JButton("Quit Game");
         //quit.addActionListener(new quitGameListener());
         pane.add(start);
         pane.add(quit);
@@ -82,8 +86,60 @@ public class Menu
         public void actionPerformed(ActionEvent event)
         {
             pane.setVisible(false);
+            pane.remove(start);
+            pane.remove(quit);
+            start = new JButton(" Two player");
+            start.addActionListener(new gameStarter2());
+            quit = new JButton("Three player");
+            quit.addActionListener(new gameStarter3());
+            player4 = new JButton("Four player");
+            player4.addActionListener(new gameStarter4());
+            pane.add(start);
+            pane.add(quit);
+            pane.add(player4);
+            pane.setVisible(true);
+            
         }
-        
+           
+    }
+    
+    class gameStarter2 implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent event)
+        {
+            mainMenu.setVisible(false);
+            ArrayList names = new ArrayList();
+            names.add(JOptionPane.showInputDialog("Enter player one name"));
+            names.add(JOptionPane.showInputDialog("Enter player two name"));
+        }
+    }
+    
+    class gameStarter3 implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent event)
+        {
+           mainMenu.setVisible(false);
+            ArrayList names = new ArrayList();
+            names.add(JOptionPane.showInputDialog("Enter player one name"));
+            names.add(JOptionPane.showInputDialog("Enter player two name"));
+            names.add(JOptionPane.showInputDialog("Enter player three name"));
+        }
+    }
+    
+    class gameStarter4 implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent event)
+        {
+            mainMenu.setVisible(false);
+            ArrayList names = new ArrayList();
+            names.add(JOptionPane.showInputDialog("Enter player one name"));
+            names.add(JOptionPane.showInputDialog("Enter player two name"));
+            names.add(JOptionPane.showInputDialog("Enter player three name"));
+            names.add(JOptionPane.showInputDialog("Enter player three name"));
+        }
     }
     //exits app
     class exitGameListener implements ActionListener
