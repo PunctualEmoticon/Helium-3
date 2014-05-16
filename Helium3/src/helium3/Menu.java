@@ -32,7 +32,9 @@ import java.awt.*;
  */
 public class Menu 
 {
-    // Makes a new menue
+    JFrame mainMenu;
+    JPanel pane;
+    // Makes a new menu
     public Menu()
     {
     }
@@ -40,7 +42,56 @@ public class Menu
     //Method that acts.
     public void go()
     {
+        // New Window
+        mainMenu = new JFrame();
+        pane = new JPanel();
+        mainMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        pane.setLayout(new BoxLayout(pane,BoxLayout.Y_AXIS));
+        DrawBack draw = new DrawBack();
+        pane.setBackground(new Color(0,0,0,0));
+        
+        
+        //button creation
+        JButton start = new JButton("New Game");
+        start.addActionListener(new newGameListener());
+        JButton quit = new JButton("Quit Game");
+        //quit.addActionListener(new quitGameListener());
+        pane.add(start);
+        pane.add(quit);
+        //Settiing buttons to be on frame
+        mainMenu.getContentPane().add(BorderLayout.WEST, pane);
+        mainMenu.getContentPane().add(draw);
+        mainMenu.setSize(500,500);
+        mainMenu.setVisible(true);
+        draw.repaint();       
+    }
+    //draws backround
+    class DrawBack extends JPanel
+    {
+        @Override
+        public void paint(Graphics g)
+        {
+            Image back = new ImageIcon("C:\\images\\back.jpg").getImage();
+            g.drawImage(back,0,0,this);
+        }
+    }
+    //starts new game process
+    class newGameListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent event)
+        {
+            pane.setVisible(false);
+        }
         
     }
+    //exits app
+    class exitGameListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent event)
+        {
            
+        }
+    }
 }
