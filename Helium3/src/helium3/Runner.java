@@ -24,12 +24,14 @@
  */
 package helium3;
 
+import gui.Menu;
+
 /**
  *
  * @author matts_000
  */
 public class Runner {
-    
+
     public static void main(String[] args) {
         Menu startMenu = new Menu();
         startMenu.go();

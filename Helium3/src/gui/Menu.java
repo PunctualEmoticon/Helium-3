@@ -22,39 +22,41 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
-package helium3;
+package gui;
+
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 import java.util.*;
+import helium3.*;    //Probably unneccessary or too broad, fix as needed
+
 /**
  *
  * @author Matt
  */
-public class Menu 
-{
+public class Menu {
+
     JFrame mainMenu;
     JPanel pane;
     JButton start;
     JButton quit;
     JButton player4;
+
     // Makes a new menu
-    public Menu()
-    {
+
+    public Menu() {
     }
-    
+
     //Method that acts.
-    public void go()
-    {
+    public void go() {
         // New Window
         mainMenu = new JFrame();
         pane = new JPanel();
         mainMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        pane.setLayout(new BoxLayout(pane,BoxLayout.Y_AXIS));
+        pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
         DrawBack draw = new DrawBack();
-        pane.setBackground(new Color(0,0,0,0));
-        
-        
+        pane.setBackground(new Color(0, 0, 0, 0));
+
         //button creation
         start = new JButton("New Game");
         start.addActionListener(new newGameListener());
@@ -65,26 +67,28 @@ public class Menu
         //Settiing buttons to be on frame
         mainMenu.getContentPane().add(BorderLayout.WEST, pane);
         mainMenu.getContentPane().add(draw);
-        mainMenu.setSize(500,500);
+        mainMenu.setSize(500, 500);
         mainMenu.setVisible(true);
-        draw.repaint();       
+        draw.repaint();
     }
+
     //draws backround
-    class DrawBack extends JPanel
-    {
+
+    class DrawBack extends JPanel {
+
         @Override
-        public void paint(Graphics g)
-        {
+        public void paint(Graphics g) {
             Image back = new ImageIcon("C:\\images\\back.jpg").getImage();
-            g.drawImage(back,0,0,this);
+            g.drawImage(back, 0, 0, this);
         }
     }
+
     //starts new game process
-    class newGameListener implements ActionListener
-    {
+
+    class newGameListener implements ActionListener {
+
         @Override
-        public void actionPerformed(ActionEvent event)
-        {
+        public void actionPerformed(ActionEvent event) {
             pane.setVisible(false);
             pane.remove(start);
             pane.remove(quit);
@@ -98,41 +102,38 @@ public class Menu
             pane.add(quit);
             pane.add(player4);
             pane.setVisible(true);
-            
+
         }
-           
+
     }
-    
-    class gameStarter2 implements ActionListener
-    {
+
+    class gameStarter2 implements ActionListener {
+
         @Override
-        public void actionPerformed(ActionEvent event)
-        {
+        public void actionPerformed(ActionEvent event) {
             mainMenu.setVisible(false);
             ArrayList names = new ArrayList();
             names.add(JOptionPane.showInputDialog("Enter player one name"));
             names.add(JOptionPane.showInputDialog("Enter player two name"));
         }
     }
-    
-    class gameStarter3 implements ActionListener
-    {
+
+    class gameStarter3 implements ActionListener {
+
         @Override
-        public void actionPerformed(ActionEvent event)
-        {
-           mainMenu.setVisible(false);
+        public void actionPerformed(ActionEvent event) {
+            mainMenu.setVisible(false);
             ArrayList names = new ArrayList();
             names.add(JOptionPane.showInputDialog("Enter player one name"));
             names.add(JOptionPane.showInputDialog("Enter player two name"));
             names.add(JOptionPane.showInputDialog("Enter player three name"));
         }
     }
-    
-    class gameStarter4 implements ActionListener
-    {
+
+    class gameStarter4 implements ActionListener {
+
         @Override
-        public void actionPerformed(ActionEvent event)
-        {
+        public void actionPerformed(ActionEvent event) {
             mainMenu.setVisible(false);
             ArrayList names = new ArrayList();
             names.add(JOptionPane.showInputDialog("Enter player one name"));
@@ -141,13 +142,14 @@ public class Menu
             names.add(JOptionPane.showInputDialog("Enter player three name"));
         }
     }
+
     //exits app
-    class exitGameListener implements ActionListener
-    {
+
+    class exitGameListener implements ActionListener {
+
         @Override
-        public void actionPerformed(ActionEvent event)
-        {
-           
+        public void actionPerformed(ActionEvent event) {
+
         }
     }
 }
