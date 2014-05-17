@@ -25,6 +25,7 @@
 package helium3;
 
 import gui.Menu;
+import gui.NewNewMenu;
 
 /**
  *
@@ -33,7 +34,7 @@ import gui.Menu;
 public class Runner {
 
     public static void main(String[] args) {
-        Menu startMenu = new Menu();
+        NewNewMenu startMenu = new NewNewMenu();
         startMenu.go();
     }
 }
