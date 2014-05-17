@@ -30,4 +30,23 @@ package helium3;
  */
 public class Grid {
     
+    private Cell[][] mat;
+    
+    /**
+     * 
+     * @param rows
+     * @param cols 
+     */
+    public Grid(int rows, int cols) {
+        mat = new Cell[rows][cols];
+    }
+    
+    /**
+     * 
+     * @param loc
+     * @return 
+     */
+    public Cell getCell(Location loc) {
+        return mat[loc.getY()][loc.getX()];
+    }
 }

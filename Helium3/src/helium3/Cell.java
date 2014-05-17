@@ -30,4 +30,39 @@ package helium3;
  */
 public class Cell {
     
+    private int helium3;
+    private Vehicle car;
+    
+    /**
+     * 
+     */
+    public Cell() {
+        helium3 = 0;
+        car = null;
+    }
+    /**
+     * 
+     * @param he3 
+     */
+    public Cell(int he3) {
+        helium3 = he3;
+        car = null;
+    }
+     /**
+      * 
+      * @return 
+      */
+    public int getHelium3Amount() {
+        return helium3;
+    }
+    /**
+     * 
+     * @param he3 
+     */
+    public void setHelium3Amount(int he3) {
+        helium3 = he3;
+    }
+    public void changeHelium3Amount(int he3Change) {
+        helium3 += he3Change;
+    }
 }

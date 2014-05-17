@@ -30,4 +30,30 @@ package helium3;
  */
 public class Location {
     
+    private int xCoordinate;
+    private int yCoordinate;
+    
+    /**
+     * 
+     * @param xCor
+     * @param yCor 
+     */
+    public Location(int xCor, int yCor) {
+        xCoordinate = xCor;
+        yCoordinate = yCor;
+    }
+    /**
+     * 
+     * @return 
+     */
+    public int getX() {
+        return xCoordinate;
+    }
+    /**
+     * 
+     * @return 
+     */
+    public int getY() {
+        return yCoordinate;
+    }
 }
