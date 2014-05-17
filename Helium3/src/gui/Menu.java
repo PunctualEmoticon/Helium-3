@@ -34,7 +34,8 @@ import helium3.*;    //Probably unneccessary or too broad, fix as needed
  *
  * @author Matt
  */
-public class Menu {
+public class Menu
+{
 
     JFrame mainMenu;
     JPanel pane;
@@ -44,14 +45,18 @@ public class Menu {
 
     // Makes a new menu
 
-    public Menu() {
+    public Menu()
+    {
     }
 
     //Method that acts.
-    public void go() {
+    public void go()
+    {
         // New Window
-        mainMenu = new JFrame();
+        mainMenu = new JFrame("Helium 3");
         pane = new JPanel();
+        JLabel title = new  JLabel("Helium 3");
+        JLabel Names = new JLabel("Coded by: David Hasagawa \n Matthew speck");
         mainMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
         DrawBack draw = new DrawBack();
@@ -61,11 +66,14 @@ public class Menu {
         start = new JButton("New Game");
         start.addActionListener(new newGameListener());
         quit = new JButton("Quit Game");
-        //quit.addActionListener(new quitGameListener());
+        quit.addActionListener(new exitGameListener());
         pane.add(start);
         pane.add(quit);
+        
         //Settiing buttons to be on frame
         mainMenu.getContentPane().add(BorderLayout.WEST, pane);
+        mainMenu.getContentPane().add(BorderLayout.NORTH, title);
+        mainMenu.getContentPane().add(BorderLayout.SOUTH, Names);
         mainMenu.getContentPane().add(draw);
         mainMenu.setSize(500, 500);
         mainMenu.setVisible(true);
@@ -74,10 +82,11 @@ public class Menu {
 
     //draws backround
 
-    class DrawBack extends JPanel {
-
+    class DrawBack extends JPanel 
+    {
         @Override
-        public void paint(Graphics g) {
+        public void paint(Graphics g)
+        {
             Image back = new ImageIcon("C:\\images\\back.jpg").getImage();
             g.drawImage(back, 0, 0, this);
         }
@@ -85,10 +94,11 @@ public class Menu {
 
     //starts new game process
 
-    class newGameListener implements ActionListener {
-
+    class newGameListener implements ActionListener 
+    {
         @Override
-        public void actionPerformed(ActionEvent event) {
+        public void actionPerformed(ActionEvent event)
+        {
             pane.setVisible(false);
             pane.remove(start);
             pane.remove(quit);
@@ -102,15 +112,15 @@ public class Menu {
             pane.add(quit);
             pane.add(player4);
             pane.setVisible(true);
-
         }
 
     }
 
-    class gameStarter2 implements ActionListener {
-
+    class gameStarter2 implements ActionListener
+    {
         @Override
-        public void actionPerformed(ActionEvent event) {
+        public void actionPerformed(ActionEvent event) 
+        {
             mainMenu.setVisible(false);
             ArrayList names = new ArrayList();
             names.add(JOptionPane.showInputDialog("Enter player one name"));
@@ -118,10 +128,11 @@ public class Menu {
         }
     }
 
-    class gameStarter3 implements ActionListener {
-
+    class gameStarter3 implements ActionListener
+    {
         @Override
-        public void actionPerformed(ActionEvent event) {
+        public void actionPerformed(ActionEvent event) 
+        {
             mainMenu.setVisible(false);
             ArrayList names = new ArrayList();
             names.add(JOptionPane.showInputDialog("Enter player one name"));
@@ -130,10 +141,11 @@ public class Menu {
         }
     }
 
-    class gameStarter4 implements ActionListener {
-
+    class gameStarter4 implements ActionListener 
+    {
         @Override
-        public void actionPerformed(ActionEvent event) {
+        public void actionPerformed(ActionEvent event)
+        {
             mainMenu.setVisible(false);
             ArrayList names = new ArrayList();
             names.add(JOptionPane.showInputDialog("Enter player one name"));
@@ -145,11 +157,12 @@ public class Menu {
 
     //exits app
 
-    class exitGameListener implements ActionListener {
-
+    class exitGameListener implements ActionListener 
+    {
         @Override
-        public void actionPerformed(ActionEvent event) {
-
+        public void actionPerformed(ActionEvent event) 
+        {
+            System.exit(0);
         }
     }
 }
