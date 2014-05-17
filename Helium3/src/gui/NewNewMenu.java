@@ -147,6 +147,7 @@ public class NewNewMenu
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         mainMenu.getContentPane().add(jLabel2, gridBagConstraints);
+        mainMenu.setSize(500,500);
         mainMenu.setVisible(true);
     }
 
@@ -169,19 +170,19 @@ public class NewNewMenu
         @Override
         public void actionPerformed(ActionEvent event)
         {
-            pane.setVisible(false);
-            pane.remove(start);
-            pane.remove(quit);
+            //pane.setVisible(false);
+            //pane.remove(start);
+            //pane.remove(quit);
             start = new JButton(" Two player");
             start.addActionListener(new gameStarter2());
             quit = new JButton("Three player");
             quit.addActionListener(new gameStarter3());
             player4 = new JButton("Four player");
             player4.addActionListener(new gameStarter4());
-            pane.add(start);
-            pane.add(quit);
-            pane.add(player4);
-            pane.setVisible(true);
+            //pane.add(start);
+            //pane.add(quit);
+            //pane.add(player4);
+            //pane.setVisible(true);
         }
 
     }
