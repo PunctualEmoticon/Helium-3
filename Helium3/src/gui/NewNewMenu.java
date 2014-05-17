@@ -42,6 +42,7 @@ public class NewNewMenu
     JButton start;
     JButton quit;
     JButton player4;
+    JPanel playerMenu;
 
     // Makes a new menu
 
@@ -134,12 +135,86 @@ public class NewNewMenu
                 .addComponent(jLabel4)
                 .addGap(36, 36, 36))
         );
+        
+        playerMenu = new JPanel();
+        JLabel jLabel11 = new javax.swing.JLabel();
+        JButton jButton1 = new javax.swing.JButton();
+        JButton jButton2 = new javax.swing.JButton();
+        JButton jButton3 = new javax.swing.JButton();
+        JLabel jLabel21 = new javax.swing.JLabel();
+
+        playerMenu.setOpaque(false);
+        playerMenu.setPreferredSize(new java.awt.Dimension(500, 500));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(250, 0, 0));
+        jLabel11.setText("Number of players?");
+        jLabel11.setPreferredSize(new java.awt.Dimension(154, 22));
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton1.setText("Two");
+        jButton1.addActionListener(new gameStarter2());
+
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton2.setText("Three");
+        jButton2.addActionListener(new gameStarter3());
+
+        jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton3.setText("Four");
+        jButton3.addActionListener(new gameStarter4());
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(250, 0, 0));
+        jLabel21.setText("And Eddy Cepeda I suppose");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(playerMenu);
+        playerMenu.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton3)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 125, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(121, 121, 121))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel21)
+                        .addContainerGap())))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(jButton1)
+                .addGap(49, 49, 49)
+                .addComponent(jButton2)
+                .addGap(50, 50, 50)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel21)
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         mainMenu.getContentPane().add(pane, gridBagConstraints);
+        mainMenu.getContentPane().add(playerMenu, gridBagConstraints);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/back.jpg"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -148,6 +223,7 @@ public class NewNewMenu
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         mainMenu.getContentPane().add(jLabel2, gridBagConstraints);
         mainMenu.setSize(500,500);
+        playerMenu.setVisible(false);
         mainMenu.setVisible(true);
     }
 
@@ -170,19 +246,8 @@ public class NewNewMenu
         @Override
         public void actionPerformed(ActionEvent event)
         {
-            //pane.setVisible(false);
-            //pane.remove(start);
-            //pane.remove(quit);
-            start = new JButton(" Two player");
-            start.addActionListener(new gameStarter2());
-            quit = new JButton("Three player");
-            quit.addActionListener(new gameStarter3());
-            player4 = new JButton("Four player");
-            player4.addActionListener(new gameStarter4());
-            //pane.add(start);
-            //pane.add(quit);
-            //pane.add(player4);
-            //pane.setVisible(true);
+        pane.setVisible(false);
+        playerMenu.setVisible(true);
         }
 
     }
