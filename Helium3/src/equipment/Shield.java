@@ -25,9 +25,100 @@
 package equipment;
 
 /**
+ * A Shield is what protects a Vehicle from attack. It can be either armed or
+ * disarmed, which determines whether it prevents the attack or not. If it is
+ * armed, it may also be deflecting in a certain direction(s). If a Shield is
+ * deflecting and is attacked by a Laser, the Laser is redirected in the
+ * deflecting direction(s).
  *
  * @author David Hasegawa
  */
 public class Shield extends Equipment {
+
+    private boolean armed;
+    private int deflectDirection;
+
+    /**
+     * Class constructor. Sets the armed status to false and deflect direction
+     * to -1 (not deflecting).
+     */
+    public Shield() {
+        armed = false;
+        deflectDirection = -1;
+    }
+
+    /**
+     * Returns whether or not this Shield is armed
+     *
+     * @return if this Shield is armed
+     */
+    public boolean isArmed() {
+        return armed;
+    }
+
+    /**
+     * Sets this Shield to be armed, even if it already is.
+     */
+    public void arm() {
+        armed = true;
+    }
+
+    /**
+     * Sets this Shield to be disarmed, even if it already is.
+     */
+    public void disarm() {
+        armed = false;
+    }
+
+    /**
+     * Sets this Shield to be armed or disarmed as specified.
+     *
+     * @param boo new armed status.
+     */
+    public void setArmed(boolean boo) {
+        armed = boo;
+    }
+
+    /**
+     * Returns the current deflect direction. -1 represents not deflecting.
+     * Between 0 and 359 represents a single-direction deflect in that angle (in
+     * degrees). Between 2000 and 2359 represents a two-direction deflect in
+     * opposite directions. (Only 2000–2179 is actually necessary.) Between 4000
+     * and 4359 represents a four-direction deflect. (Only 4000–4089 is actually
+     * necessary.) Between 8000 and 8359 represents an eight-direction deflect.
+     * (Only 8000 is actually necessary.)
+     *
+     * @return the stored deflect direction.
+     */
+    public int getDeflectDirection() {
+        return deflectDirection;
+    }
+
+    /**
+     * Sets the new deflect direction. See the getDeflectDirection() Javadoc for
+     * details on permissible values.
+     *
+     * @param newDir the new deflection setting.
+     */
+    public void setDeflectDirection(int newDir) {
+        deflectDirection = newDir;
+    }
     
+    /**
+     * Determines whether or not this Shield protects against a Weapon's attack.
+     * If it returns false, it did not protect.
+     * 
+     * @param sword The Weapon being defended against.
+     * @return if this Shield protects against sword.
+     */
+    public boolean defend(Weapon sword) {
+        if (!armed) {
+            return false;
+        }
+        armed = false;
+        if (sword instanceof Laser && deflectDirection != -1) {
+            //incomplete, but will create new Laser for deflecting.
+        }
+        return true;
+    }
 }
