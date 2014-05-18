@@ -27,6 +27,7 @@ package equipment;
 import helium3.Grid;
 import helium3.Cell;
 import helium3.Location;
+import java.lang.Math;
 
 /**
  *
@@ -43,22 +44,42 @@ public class Drill extends Equipment {
     
     /**
      * Extracts 100 helium-3 from the surrounding square of Cells in the given
-     * Grid.  The size of the extraction square depends on the Drill's upgrade
-     * level.  Each upgrade increases the radius by 1.
+     * Grid and returns the extracted amount.  The size of the extraction square
+     * depends on the Drill's upgrade level.  Each upgrade increases the radius
+     * by 1.
      * 
+     * @param gr the Grid to extract from.
      * @param loc the center of the Drill's extraction.
+     * @return the total value of helium-3 extracted.
      */
-    public void mine(Grid gr, Location loc) {
-        int radius = super.getUpgradeLevel() + 1;
+    public int mine(Grid gr, Location loc) {
+        int sum = 0;
+        final int extractAmount = 100; //positive number
+        final int radius = super.getUpgradeLevel() + 1;
+        
+        //Nested loop for checking cells around loc
         for (int row = loc.getY() - radius; row < loc.getY() + radius; row++) {
             for (int col = loc.getX() - radius; col < loc.getX() + radius;
                     col++) {
                 Location currentLoc = new Location(col, row);
+                
+                //Check because loc could be near the edge of the Grid
                 if (gr.isValid(currentLoc)) {
-                    gr.getCell(currentLoc).changeHelium3Amount(-100);
+                    Cell currentCell = gr.getCell(currentLoc);
+                    
+                    currentCell.changeHelium3Amount(-extractAmount);
+                    sum += extractAmount;
+                    //Check if Cell has run out of helium-3
+                    if (currentCell.getHelium3Amount() < 0) {
+                        int changeAmount =
+                                Math.abs(currentCell.getHelium3Amount());
+                        currentCell.changeHelium3Amount(changeAmount);
+                        sum -= changeAmount;
+                    }
                 }
             }
         }
+        return sum;
     }
         
 }
