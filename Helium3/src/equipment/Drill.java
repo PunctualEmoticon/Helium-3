@@ -24,10 +24,41 @@
  */
 package equipment;
 
+import helium3.Grid;
+import helium3.Cell;
+import helium3.Location;
+
 /**
  *
  * @author David Hasegawa
  */
 public class Drill extends Equipment {
     
+    /**
+     * Class constructor.
+     */
+    public Drill() {
+        super();
+    }
+    
+    /**
+     * Extracts 100 helium-3 from the surrounding square of Cells in the given
+     * Grid.  The size of the extraction square depends on the Drill's upgrade
+     * level.  Each upgrade increases the radius by 1.
+     * 
+     * @param loc the center of the Drill's extraction.
+     */
+    public void mine(Grid gr, Location loc) {
+        int radius = super.getUpgradeLevel() + 1;
+        for (int row = loc.getY() - radius; row < loc.getY() + radius; row++) {
+            for (int col = loc.getX() - radius; col < loc.getX() + radius;
+                    col++) {
+                Location currentLoc = new Location(col, row);
+                if (gr.isValid(currentLoc)) {
+                    gr.getCell(currentLoc).changeHelium3Amount(-100);
+                }
+            }
+        }
+    }
+        
 }

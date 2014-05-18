@@ -25,9 +25,60 @@
 package equipment;
 
 /**
- *
+ * Equipment is the abstract superclass for all the equipment a Vehicle may own.
+ * It manages the upgrade level of all equipment.
  * @author David Hasegawa
  */
 public abstract class Equipment {
-    
+
+    private int upgradeLevel;
+
+    /**
+     * Class constructor that sets the current upgrade level to 0.
+     */
+    public Equipment() {
+        upgradeLevel = 0;
+    }
+
+    /**
+     * Class constructor that sets the current upgrade level to the specified
+     * value.
+     *
+     * @param upG
+     */
+    public Equipment(int upG) {
+        upgradeLevel = upG;
+    }
+
+    /**
+     * Returns the current upgrade level of this Equipment
+     *
+     * @return the current upgrade level.
+     */
+    public int getUpgradeLevel() {
+        return upgradeLevel;
+    }
+
+    /**
+     * Sets the current upgrade level to the specified value.
+     *
+     * @param upG the new upgrade level.
+     */
+    public void setUpgradeLevel(int upG) {
+        upgradeLevel = upG;
+    }
+
+    /**
+     * Increments the current upgrade level by 1.
+     */
+    public void upgrade() {
+        upgradeLevel++;
+    }
+
+    /**
+     * Decrements the current upgrade level by 1.
+     */
+    public void downgrade() {
+        upgradeLevel--;
+    }
 }

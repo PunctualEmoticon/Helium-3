@@ -25,33 +25,40 @@
 package helium3;
 
 /**
+ * An immutable class that holds two ints for a x and y coordinates, for
+ * referring to an element in a Grid.
  *
  * @author David Hasegawa
  */
 public class Location {
-    
-    private int xCoordinate;
-    private int yCoordinate;
-    
+
+    private final int xCoordinate;
+    private final int yCoordinate;
+
     /**
-     * 
-     * @param xCor
-     * @param yCor 
+     * Class constructor specifying x and y coordinates to be held.
+     *
+     * @param xCor x-coordinate to be held
+     * @param yCor y-coordinate to be held
      */
     public Location(int xCor, int yCor) {
         xCoordinate = xCor;
         yCoordinate = yCor;
     }
+
     /**
-     * 
-     * @return 
+     * Returns an int representing an x-coordinate in a Grid.
+     *
+     * @return the x-coordinate
      */
     public int getX() {
         return xCoordinate;
     }
+
     /**
-     * 
-     * @return 
+     * Returns an int representing a y-coordinate in a Grid.
+     *
+     * @return the y-coordinate
      */
     public int getY() {
         return yCoordinate;

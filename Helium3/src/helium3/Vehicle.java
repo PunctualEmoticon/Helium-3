@@ -32,4 +32,11 @@ import equipment.*;
  */
 public class Vehicle {
     
+    private Drill drill;
+    private Shield shield;
+    private Kamikaze kamikaze;
+    private Laser laser;
+    private Missile missile;
+    private int speed;
+    
 }

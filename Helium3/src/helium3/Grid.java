@@ -25,28 +25,116 @@
 package helium3;
 
 /**
- *
+ * The Grid class contains a matrix (two-dimensional array) of Cells.  The
+ * matrix is final and cannot be changed, but its elements can be.
+ * 
  * @author David Hasegawa
  */
 public class Grid {
-    
-    private Cell[][] mat;
-    
+
+    final private Cell[][] mat;
+
     /**
-     * 
+     * Class constructor specifying the number of rows and columns of Cells to
+     * be created. Each cell has a helium-3 value of 0.
+     *
      * @param rows
-     * @param cols 
+     * @param cols
      */
     public Grid(int rows, int cols) {
         mat = new Cell[rows][cols];
+
+        //Fill the matrix with Cells instead of null.
+        for (int r = 0; r < mat.length; r++) {
+            for (int c = 0; c < mat[r].length; c++) {
+                mat[r][c] = new Cell();
+            }
+        }
     }
-    
+
     /**
-     * 
-     * @param loc
-     * @return 
+     * Returns the Cell at the specified Location.
+     *
+     * @param loc the Location to get.
+     * @return the Cell at the Location.
      */
     public Cell getCell(Location loc) {
         return mat[loc.getY()][loc.getX()];
+    }
+
+    /**
+     * Returns the number of rows (the height) of this Grid.
+     *
+     * @return this Grid's number of rows.
+     */
+    public int getNumRows() {
+        return mat.length;
+    }
+
+    /**
+     * Returns the number of columns (the width) of this Grid.
+     *
+     * @return this Grid's number of columns.
+     */
+    public int getNumCols() {
+        return mat[0].length;
+    }
+
+    /**
+     * Returns the number of Cells in this Grid.
+     *
+     * @return the number of Cells in this Grid.
+     */
+    public int getArea() {
+        return getNumRows() * getNumCols();
+    }
+    
+    /**
+     * Checks a Location to see whether its coordinates are within this Grid.
+     * @param loc the Location to be checked.
+     * @return 
+     */
+    public boolean isValid(Location loc) {
+        int locX = loc.getX();
+        int locY = loc.getY();
+        return locX >= 0 && locX < getNumCols() && locY >= 0
+                && locY < getNumRows();
+    }
+    
+    /**
+     * Calculates and returns the total value of helium-3 contained within all
+     * the Cells in this Grid.
+     * @return the total value of helium-3 within this Grid.
+     */
+    public int getTotalHelium3() {
+        int sum = 0;
+        for (Cell[] row : mat) {
+            for (Cell cel : row) {
+                sum += cel.getHelium3Amount();
+            }
+        }
+        return sum;
+    }
+    
+    /**
+     * Returns a String of the Grid's Cell's helium-3 amounts, formatted in a
+     * grid.  If a Cell is occupied, then an asterisk will be added next to its
+     * helium-3 number.
+     * @return 
+     */
+    @Override
+    public String toString() {
+        String result = "";
+        for (int row = 0; row < getNumRows(); row++) {
+            for (int col = 0; col < getNumCols(); col++) {
+                result += mat[row][col].getHelium3Amount() + "";
+                if (mat[row][col].isOccupied()) {
+                    result += "*";
+                }
+                result += " ";
+            }
+            result += "\n";
+        }
+        return result;
     }
 }
