@@ -83,10 +83,8 @@ public class Shield extends Equipment {
      * Returns the current deflect direction. -1 represents not deflecting.
      * Between 0 and 359 represents a single-direction deflect in that angle (in
      * degrees). Between 2000 and 2359 represents a two-direction deflect in
-     * opposite directions. (Only 2000–2179 is actually necessary.) Between 4000
-     * and 4359 represents a four-direction deflect. (Only 4000–4089 is actually
-     * necessary.) Between 8000 and 8359 represents an eight-direction deflect.
-     * (Only 8000 is actually necessary.)
+     * opposite directions.Between 4000 and 4359 represents a four-direction
+     * deflect.  Between 8000 and 8359 represents an eight-direction deflect.
      *
      * @return the stored deflect direction.
      */
@@ -106,12 +104,13 @@ public class Shield extends Equipment {
     
     /**
      * Determines whether or not this Shield protects against a Weapon's attack.
-     * If it returns false, it did not protect.
+     * Returning false means this Shield did not defend against sword.  If this
+     * Shield does successfully defend, it is then disarmed.
      * 
      * @param sword The Weapon being defended against.
      * @return if this Shield protects against sword.
      */
-    public boolean defend(Weapon sword) {
+    public boolean blocks(Weapon sword) {
         if (!armed) {
             return false;
         }
