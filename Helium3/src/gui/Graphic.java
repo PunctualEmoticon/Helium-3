@@ -22,22 +22,63 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
-package helium3;
-
-import equipment.*;
+package gui;
+import helium3.*;
+import javax.swing.*;
 
 /**
  *
- * @author David Hasegawa
+ * @author matts_000
  */
-public class Vehicle {
+public class Graphic
+{
+    JFrame frame;
     
-    /*final private Drill drill;
-    final private Shield shield;
-    final private Kamikaze kamikaze;
-    final private Laser laser;
-    final private Missile missile; */
-    private int speed;
-    private int helium3;
+    public Graphic(JFrame a)
+    { 
+        frame= a;
+    }
     
+    public void newGameGraphics()
+    {
+        //starts a window with grid in it. Charcters placed in starting positions
+        frame.setSize(1000,1000);
+        frame.setVisible(true);
+        
+    }
+    
+    public void move(Location ab, Location ba)
+    {
+        //moves sprite from location a to b on grid
+    }
+    
+    public void las(Location ab, Location ba)
+    {
+        //shoots lazer from lcation ab to ba
+    }
+    
+    public void missile(Location ab, Location ba)
+    {
+        //shoots missle from ab to ba
+    }
+    
+    public void shield(Location ab)
+    {
+        //puts sheild around vehicle
+    }
+    
+    public void drill(Location ab)
+    {
+        //drill on outside of vehicle, less color for helium 3
+    }
+    
+    public void kamikaze(Location ab)
+    {
+        //thing blows up
+    }
+    
+    public void remove(Location ab)
+    {
+        //remove vehicle from space if destroyed
+    }
 }

@@ -227,18 +227,6 @@ public class NewNewMenu
         mainMenu.setVisible(true);
     }
 
-    //draws backround
-
-    class DrawBack extends JPanel 
-    {
-        @Override
-        public void paint(Graphics g)
-        {
-            Image back = new ImageIcon("C:\\images\\back.jpg").getImage();
-            g.drawImage(back, 0, 0, this);
-        }
-    }
-
     //starts new game process
 
     class newGameListener implements ActionListener 
@@ -261,6 +249,8 @@ public class NewNewMenu
             ArrayList names = new ArrayList();
             names.add(JOptionPane.showInputDialog("Enter player one name"));
             names.add(JOptionPane.showInputDialog("Enter player two name"));
+            Game g = new Game(names);
+            g.newGame();
         }
     }
 
@@ -274,6 +264,8 @@ public class NewNewMenu
             names.add(JOptionPane.showInputDialog("Enter player one name"));
             names.add(JOptionPane.showInputDialog("Enter player two name"));
             names.add(JOptionPane.showInputDialog("Enter player three name"));
+            Game g = new Game(names);
+            g.newGame();
         }
     }
 
@@ -288,6 +280,8 @@ public class NewNewMenu
             names.add(JOptionPane.showInputDialog("Enter player two name"));
             names.add(JOptionPane.showInputDialog("Enter player three name"));
             names.add(JOptionPane.showInputDialog("Enter player three name"));
+            Game g = new Game(names);
+            g.newGame();
         }
     }
 

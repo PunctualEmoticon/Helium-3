@@ -24,7 +24,6 @@
  */
 package helium3;
 
-import gui.Menu;
 import gui.NewNewMenu;
 
 /**

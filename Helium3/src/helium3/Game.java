@@ -22,57 +22,34 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
-package gui;
-import helium3.*;
+package helium3;
+
+import gui.Graphic;
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+import java.util.*;
 
 /**
  *
- * @author matts_000
+ * @author Matt
  */
-public class Graphics
+public class Game 
 {
+    private ArrayList players;
+    private Graphic g;
+    JFrame frame;
     
-    public Graphics()
-    { 
+    public Game(ArrayList a)
+    {
+        players=a;
     }
     
     public void newGame()
     {
-        //starts a window with grid in it. Charcters placed in starting positions
-    }
-    
-    public void move(Location ab, Location ba)
-    {
-        //moves sprite from location a to b on grid
-    }
-    
-    public void las(Location ab, Location ba)
-    {
-        //shoots lazer from lcation ab to ba
-    }
-    
-    public void missile(Location ab, Location ba)
-    {
-        //shoots missle from ab to ba
-    }
-    
-    public void shield(Location ab)
-    {
-        //puts sheild around vehicle
-    }
-    
-    public void drill(Location ab)
-    {
-        //drill on outside of vehicle, less color for helium 3
-    }
-    
-    public void kamikaze(Location ab)
-    {
-        //thing blows up
-    }
-    
-    public void remove(Location ab)
-    {
-        //remove vehicle from space if destroyed
+        //code for david to doooooooo
+        frame = new JFrame();
+        g=new Graphic(frame);
+        g.newGameGraphics();
     }
 }
