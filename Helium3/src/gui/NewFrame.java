@@ -33,15 +33,19 @@ import javax.swing.*;
  *
  * @author Matt
  */
-public class Frame extends JFrame{
+public class NewFrame extends JFrame{
     
     private Image dbImage;
     private Graphics dbg;
     
-    public Frame(){
+    private boolean isRunningHappeningNow;
+    
+    
+    public NewFrame(){
         
     }
     
+    @Override
     public void paint(Graphics g){
         dbImage = createImage(getWidth(), getHeight());
         dbg = dbImage.getGraphics();
@@ -49,7 +53,7 @@ public class Frame extends JFrame{
         g.drawImage(dbImage, 0, 0, this);
     }
     public void paintComponent(Graphics g){
-        g.setColor(new Color(255,255,255,20));
+        g.setColor(new Color(255,255,255));
         for(int x = 0; x < 20; x++){
             for(int y = 0; y < 20; y++){
                 g.fillRect(x*14, y*14, 12, 12);
@@ -57,4 +61,19 @@ public class Frame extends JFrame{
         }
     }
     
+    
+    
+    public void makeRunHappen()
+    {
+       while(isRunningHappeningNow) 
+       {
+           
+           
+           
+           try{
+               Thread.sleep(100);
+           }catch(Exception e){}
+           repaint();
+       }
+    }
 }

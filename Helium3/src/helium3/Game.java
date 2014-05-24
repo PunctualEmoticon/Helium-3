@@ -24,11 +24,12 @@
  */
 package helium3;
 
-import gui.Graphic;
+import gui.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 import java.util.*;
+
 
 /**
  *
@@ -39,7 +40,7 @@ public class Game
     private ArrayList players;
     private Graphic g;
     private Grid gr;
-    JFrame frame;
+    NewFrame frame;
     
     public Game(ArrayList a)
     {
@@ -49,10 +50,19 @@ public class Game
     public void newGame()
     {
         //code for david to doooooooo
-        frame = new JFrame();
+        frame = new NewFrame();
         g=new Graphic(frame);
         g.newGameGraphics();
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     class click implements MouseListener
     {

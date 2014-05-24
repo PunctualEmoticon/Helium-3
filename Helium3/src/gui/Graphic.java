@@ -34,9 +34,9 @@ import java.awt.GridLayout;
  */
 public class Graphic
 {
-    JFrame frame;
+    NewFrame frame;
     
-    public Graphic(JFrame a)
+    public Graphic(NewFrame a)
     { 
         frame= a;
     }
@@ -48,6 +48,7 @@ public class Graphic
         frame.getContentPane().setBackground(Color.GRAY);
         frame.setSize(1000,1000);
         frame.setVisible(true);
+        frame.makeRunHappen();
         
     }
     
