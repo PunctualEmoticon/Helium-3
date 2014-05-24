@@ -38,6 +38,7 @@ public class Game
 {
     private ArrayList players;
     private Graphic g;
+    private Grid gr;
     JFrame frame;
     
     public Game(ArrayList a)
@@ -51,5 +52,49 @@ public class Game
         frame = new JFrame();
         g=new Graphic(frame);
         g.newGameGraphics();
+    }
+    
+    class click implements MouseListener
+    {
+
+        @Override
+        public void mouseClicked(MouseEvent e)
+        {
+            int x = e.getX();
+            int y = e.getY();
+            int cellX = x/50;
+            int cellY = y/50;
+            Location loc = new Location(cellX,cellY);
+            if(gr.getCell(loc).isOccupied())
+            {
+                Vehicle ve = gr.getCell(loc).getVehicle();
+            }
+            
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e)
+        {
+            
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) 
+        {
+            
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) 
+        {
+            
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) 
+        {
+            
+        }
+        
     }
 }

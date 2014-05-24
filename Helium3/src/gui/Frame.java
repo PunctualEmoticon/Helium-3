@@ -1,6 +1,6 @@
 /*
  The MIT License (MIT)
- 
+
  Copyright (c) 2014 David Hasegawa, Matthew Speck, Francisco Eduardo Cepeda
  Aguilar
 
@@ -23,66 +23,38 @@
  SOFTWARE.
  */
 package gui;
-import helium3.*;
+
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
 import javax.swing.*;
-import java.awt.GridLayout;
 
 /**
  *
- * @author matts_000
+ * @author Matt
  */
-public class Graphic
-{
-    JFrame frame;
+public class Frame extends JFrame{
     
-    public Graphic(JFrame a)
-    { 
-        frame= a;
-    }
+    private Image dbImage;
+    private Graphics dbg;
     
-    public void newGameGraphics()
-    {
-        //starts a window with grid in it. Charcters placed in starting positions
-        GridLayout layout =  new GridLayout(20,20);
-        frame.getContentPane().setBackground(Color.GRAY);
-        frame.setSize(1000,1000);
-        frame.setVisible(true);
+    public Frame(){
         
     }
     
-    public void move(Location ab, Location ba)
-    {
-        //moves sprite from location a to b on grid
+    public void paint(Graphics g){
+        dbImage = createImage(getWidth(), getHeight());
+        dbg = dbImage.getGraphics();
+        paintComponent(dbg);
+        g.drawImage(dbImage, 0, 0, this);
+    }
+    public void paintComponent(Graphics g){
+        g.setColor(new Color(255,255,255,20));
+        for(int x = 0; x < 20; x++){
+            for(int y = 0; y < 20; y++){
+                g.fillRect(x*14, y*14, 12, 12);
+            }
+        }
     }
     
-    public void las(Location ab, Location ba)
-    {
-        //shoots lazer from lcation ab to ba
-    }
-    
-    public void missile(Location ab, Location ba)
-    {
-        //shoots missle from ab to ba
-    }
-    
-    public void shield(Location ab)
-    {
-        //puts sheild around vehicle
-    }
-    
-    public void drill(Location ab)
-    {
-        //drill on outside of vehicle, less color for helium 3
-    }
-    
-    public void kamikaze(Location ab)
-    {
-        //thing blows up
-    }
-    
-    public void remove(Location ab)
-    {
-        //remove vehicle from space if destroyed
-    }
 }
