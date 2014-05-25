@@ -42,9 +42,14 @@ public class Game
     private Grid gr;
     NewFrame frame;
     
-    public Game(ArrayList a)
+    public Game(ArrayList<String> a)
     {
-        players=a;
+        players  = new ArrayList();
+        for(int i = 0; i< a.size(); i++)
+        {
+            Player player = new Player(a.get(i));
+            players.add(player);
+        }
     }
     
     public void newGame()
@@ -52,7 +57,7 @@ public class Game
         //code for david to doooooooo
         frame = new NewFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    g=new Graphic(frame);
+        g=new Graphic(frame , players);
         g.newGameGraphics();
     }
     

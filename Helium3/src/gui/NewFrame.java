@@ -24,7 +24,9 @@
  */
 package gui;
 
+import helium3.Grid;
 import helium3.Location;
+import helium3.Player;
 import helium3.Vehicle;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -32,9 +34,9 @@ import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import helium3.Grid;
 
 /**
  *
@@ -97,7 +99,7 @@ public class NewFrame extends JFrame{
     
     
     
-    public void makeRunHappen()
+    public void makeRunHappen(ArrayList<Player> a)
     {
        while(isRunningHappeningNow) 
        {

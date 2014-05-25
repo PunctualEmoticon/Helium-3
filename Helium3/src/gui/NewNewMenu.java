@@ -246,7 +246,7 @@ public class NewNewMenu
         public void actionPerformed(ActionEvent event) 
         {
             mainMenu.setVisible(false);
-            ArrayList names = new ArrayList();
+            ArrayList<String> names = new ArrayList<String>();
             names.add(JOptionPane.showInputDialog("Enter player one name"));
             names.add(JOptionPane.showInputDialog("Enter player two name"));
             Game g = new Game(names);
@@ -260,7 +260,7 @@ public class NewNewMenu
         public void actionPerformed(ActionEvent event) 
         {
             mainMenu.setVisible(false);
-            ArrayList names = new ArrayList();
+            ArrayList<String> names = new ArrayList<String>();
             names.add(JOptionPane.showInputDialog("Enter player one name"));
             names.add(JOptionPane.showInputDialog("Enter player two name"));
             names.add(JOptionPane.showInputDialog("Enter player three name"));
@@ -275,7 +275,7 @@ public class NewNewMenu
         public void actionPerformed(ActionEvent event)
         {
             mainMenu.setVisible(false);
-            ArrayList names = new ArrayList();
+            ArrayList<String> names = new ArrayList<String>();
             names.add(JOptionPane.showInputDialog("Enter player one name"));
             names.add(JOptionPane.showInputDialog("Enter player two name"));
             names.add(JOptionPane.showInputDialog("Enter player three name"));

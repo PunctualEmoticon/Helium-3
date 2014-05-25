@@ -24,10 +24,18 @@
  */
 package helium3;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author David Hasegawa
  */
 public class Player {
+    private ArrayList<Vehicle> arr;
+    private String name;
+    
+    Player(String str) {
+        name = str;
+    }
     
 }

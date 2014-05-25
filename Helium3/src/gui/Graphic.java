@@ -25,8 +25,9 @@
 package gui;
 import helium3.*;
 import java.awt.Color;
-import javax.swing.*;
 import java.awt.GridLayout;
+import java.util.ArrayList;
+import javax.swing.*;
 
 /**
  *
@@ -35,10 +36,12 @@ import java.awt.GridLayout;
 public class Graphic
 {
     NewFrame frame;
+    ArrayList<Player> arr;
     
-    public Graphic(NewFrame a)
+    public Graphic(NewFrame a, ArrayList<Player> ar)
     { 
         frame= a;
+        arr = ar;
     }
     
     public void newGameGraphics()
@@ -48,7 +51,7 @@ public class Graphic
         frame.getContentPane().setBackground(Color.GRAY);
         frame.setSize(706,728);
         frame.setVisible(true);
-        frame.makeRunHappen();
+        frame.makeRunHappen(arr);
         frame.setResizable(false);
         
     }
