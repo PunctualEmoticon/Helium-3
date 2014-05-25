@@ -62,15 +62,19 @@ public class NewFrame extends JFrame{
     private Image rdrill;
     private Image ydrill;
     private Image pdrill;
+    private Image ylaz;
+    private Image rlaz;
+    private Image plaz;
+    private Image glaz;
     
     public NewFrame(){
         
         try{
         back = ImageIO.read(this.getClass().getResource("/resources/Moon Grid.png"));
-        gtank = ImageIO.read(this.getClass().getResource("/resources/TankGreen.png"));
-        rtank = ImageIO.read(this.getClass().getResource("/resources/TankRed.png"));
-        ptank = ImageIO.read(this.getClass().getResource("/resources/TankPrpl.png"));
-        ytank = ImageIO.read(this.getClass().getResource("/resources/TankYelo.png"));
+        gtank = ImageIO.read(this.getClass().getResource("/resources/GreenTank.png"));
+        rtank = ImageIO.read(this.getClass().getResource("/resources/RedTank.png"));
+        ptank = ImageIO.read(this.getClass().getResource("/resources/PrplTank.png"));
+        ytank = ImageIO.read(this.getClass().getResource("/resources/YeloTank.png"));
         gshield = ImageIO.read(this.getClass().getResource("/resources/shieldGreen.png"));
         rshield = ImageIO.read(this.getClass().getResource("/resources/shieldRed.png"));
         pshield = ImageIO.read(this.getClass().getResource("/resources/shieldPrpl.png"));
@@ -79,6 +83,10 @@ public class NewFrame extends JFrame{
         rdrill = ImageIO.read(this.getClass().getResource("/resources/TankRedDrill.png"));
         pdrill = ImageIO.read(this.getClass().getResource("/resources/TankPrplDrill.png"));
         ydrill = ImageIO.read(this.getClass().getResource("/resources/TankYeloDrill.png"));
+        ylaz = ImageIO.read(this.getClass().getResource("/resources/YeloLazer.png"));
+        rlaz = ImageIO.read(this.getClass().getResource("/resources/RedLazer.png"));
+        plaz = ImageIO.read(this.getClass().getResource("/resources/PrplLazer.png"));
+        glaz = ImageIO.read(this.getClass().getResource("/resources/GreenLazer.png"));
         mis = ImageIO.read(this.getClass().getResource("/resources/missile.png"));
         }catch(Exception e){System.out.println("could not find image");}
     }
@@ -111,6 +119,17 @@ public class NewFrame extends JFrame{
            }catch(Exception e){}
            repaint();
        }
+    }
+    
+    
+    public int locToPixX(int x)
+    {
+        return (x*35)+6;
+    }
+    
+    public int locToPixY(int y)
+    {
+        return (y*35)+28;
     }
     
     class click implements MouseListener

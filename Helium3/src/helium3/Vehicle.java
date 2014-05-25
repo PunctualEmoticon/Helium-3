@@ -62,6 +62,6 @@ public class Vehicle {
      * @param weap the attacking weapon.
      */
     public boolean underAttackBy(Weapon weap) {
-        
+        return true;
     }
 }
