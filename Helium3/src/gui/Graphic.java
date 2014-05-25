@@ -46,9 +46,10 @@ public class Graphic
         //starts a window with grid in it. Charcters placed in starting positions
         GridLayout layout =  new GridLayout(20,20);
         frame.getContentPane().setBackground(Color.GRAY);
-        frame.setSize(1000,1000);
+        frame.setSize(706,728);
         frame.setVisible(true);
         frame.makeRunHappen();
+        frame.setResizable(false);
         
     }
     

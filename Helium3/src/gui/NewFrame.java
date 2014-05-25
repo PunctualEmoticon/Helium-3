@@ -24,10 +24,17 @@
  */
 package gui;
 
+import helium3.Location;
+import helium3.Vehicle;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import helium3.Grid;
 
 /**
  *
@@ -37,12 +44,41 @@ public class NewFrame extends JFrame{
     
     private Image dbImage;
     private Graphics dbg;
-    
+    private Image back;
+    private Image gtank;
+    private Image rtank;
+    private Image ptank;
+    private Image ytank;
     private boolean isRunningHappeningNow;
-    
+    private Image mis;
+    private Grid gr;
+    private Image gshield;
+    private Image rshield;
+    private Image pshield;
+    private Image yshield;
+    private Image gdrill;
+    private Image rdrill;
+    private Image ydrill;
+    private Image pdrill;
     
     public NewFrame(){
         
+        try{
+        back = ImageIO.read(this.getClass().getResource("/resources/Moon Grid.png"));
+        gtank = ImageIO.read(this.getClass().getResource("/resources/TankGreen.png"));
+        rtank = ImageIO.read(this.getClass().getResource("/resources/TankRed.png"));
+        ptank = ImageIO.read(this.getClass().getResource("/resources/TankPrpl.png"));
+        ytank = ImageIO.read(this.getClass().getResource("/resources/TankYelo.png"));
+        gshield = ImageIO.read(this.getClass().getResource("/resources/shieldGreen.png"));
+        rshield = ImageIO.read(this.getClass().getResource("/resources/shieldRed.png"));
+        pshield = ImageIO.read(this.getClass().getResource("/resources/shieldPrpl.png"));
+        yshield = ImageIO.read(this.getClass().getResource("/resources/shieldYelo.png"));
+        gdrill = ImageIO.read(this.getClass().getResource("/resources/TankGreenDrill.png"));
+        rdrill = ImageIO.read(this.getClass().getResource("/resources/TankRedDrill.png"));
+        pdrill = ImageIO.read(this.getClass().getResource("/resources/TankPrplDrill.png"));
+        ydrill = ImageIO.read(this.getClass().getResource("/resources/TankYeloDrill.png"));
+        mis = ImageIO.read(this.getClass().getResource("/resources/missile.png"));
+        }catch(Exception e){System.out.println("could not find image");}
     }
     
     @Override
@@ -50,15 +86,13 @@ public class NewFrame extends JFrame{
         dbImage = createImage(getWidth(), getHeight());
         dbg = dbImage.getGraphics();
         paintComponent(dbg);
-        g.drawImage(dbImage, 0, 0, this);
+        g.drawImage(dbImage, 3, 25, this);
     }
     public void paintComponent(Graphics g){
-        g.setColor(new Color(255,255,255));
-        for(int x = 0; x < 20; x++){
-            for(int y = 0; y < 20; y++){
-                g.fillRect(x*14, y*14, 12, 12);
-            }
-        }
+        
+        g.drawImage(back, 0, 0, this);
+        g.drawImage(gtank, 50, 50, this);
+        g.drawImage(gtank, 214, 345, this);
     }
     
     
@@ -75,5 +109,48 @@ public class NewFrame extends JFrame{
            }catch(Exception e){}
            repaint();
        }
+    }
+    
+    class click implements MouseListener
+    {
+
+        @Override
+        public void mouseClicked(MouseEvent e)
+        {
+            int x = e.getX();
+            int y = e.getY();
+            int cellX = x/35;
+            int cellY = y/35;
+            Location loc = new Location(cellX,cellY);
+            if(gr.getCell(loc).isOccupied())
+            {
+                Vehicle ve = gr.getCell(loc).getVehicle();
+            }
+            
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e)
+        {
+            
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) 
+        {
+            
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) 
+        {
+            
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) 
+        {
+            
+        }
     }
 }

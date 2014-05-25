@@ -51,7 +51,8 @@ public class Game
     {
         //code for david to doooooooo
         frame = new NewFrame();
-        g=new Graphic(frame);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    g=new Graphic(frame);
         g.newGameGraphics();
     }
     
@@ -72,8 +73,8 @@ public class Game
         {
             int x = e.getX();
             int y = e.getY();
-            int cellX = x/50;
-            int cellY = y/50;
+            int cellX = (x-6)/50;
+            int cellY = (y-28)/50;
             Location loc = new Location(cellX,cellY);
             if(gr.getCell(loc).isOccupied())
             {
