@@ -24,10 +24,67 @@
  */
 package equipment;
 
+import helium3.Grid;
+import helium3.Location;
+import helium3.Cell;
+import java.util.List;
+import java.util.ArrayList;
+
 /**
- *
+ * A Kamikaze attacks all adjacent Cells within a distance specified by its
+ * upgrade level.  Unlike other weapons, a Kamikaze does not need to be armed
+ * before attacking.
+ * 
  * @author David Hasegawa
  */
 public class Kamikaze extends Weapon {
-    
+
+    /**
+     * Class constructor.
+     */
+    public Kamikaze() {
+        super();
+    }
+
+    /**
+     * Returns all the Locations in a square around thisLoc.
+     * 
+     * @param thisGrid the Grid that this Kamikaze is in.
+     * @param thisLoc the Location that this Kamikaze is in.
+     * @return
+     */
+    @Override
+    public List<Location> getPossibleTargets(Grid thisGrid, Location thisLoc) {
+        List<Location> result = new ArrayList<>();
+        int radius = getUpgradeLevel() + 1;
+
+        //Nested for loops going from thisLoc's row and col, +/- radius
+        for (int row = thisLoc.getY() - radius; row <= thisLoc.getY() + radius;
+                row++) {
+            for (int col = thisLoc.getX() - radius;
+                    col <= thisLoc.getX() + radius; col++) {
+                Location currentLoc = new Location(col, row);
+                if (thisGrid.isValid(currentLoc)) {
+                    result.add(currentLoc);
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Attacks all the targets returned by getPossibleTargets.
+     *
+     * @param thisGrid the Grid that this Kamikaze is currently in.
+     * @param thisLoc the Location that this Kamikaze is currently in.
+     */
+    public void attack(Grid thisGrid, Location thisLoc) {
+        List<Location> locsToAttack = getPossibleTargets(thisGrid, thisLoc);
+        for (Location attackLoc : locsToAttack) {
+            Cell attackCell = thisGrid.getCell(thisLoc);
+            if (attackCell.isOccupied()) {
+                attackCell.getVehicle().underAttackBy(this);
+            }
+        }
+    }
 }

@@ -32,12 +32,36 @@ import equipment.*;
  */
 public class Vehicle {
     
-    /*final private Drill drill;
+    final private Drill drill;
     final private Shield shield;
     final private Kamikaze kamikaze;
     final private Laser laser;
-    final private Missile missile; */
-    private int speed;
+    final private Missile missile;
+    private int moveRadius;
     private int helium3;
     
+    /**
+     * Class constructor.  Sets this Vehicle's move radius to 4 and stored
+     * helium-3 to 0.
+     */
+    public Vehicle() {
+        drill = new Drill();
+        shield = new Shield();
+        kamikaze = new Kamikaze();
+        laser = new Laser();
+        missile = new Missile();
+        moveRadius = 4;
+        helium3 = 0;
+    }
+    
+    /**
+     * Attacks this Vehicle with the specified Weapon and performs the
+     * appropriate actions (such as destroying this Vehicle, attacking another,
+     * and so on).
+     * 
+     * @param weap the attacking weapon.
+     */
+    public boolean underAttackBy(Weapon weap) {
+        
+    }
 }

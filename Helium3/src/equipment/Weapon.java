@@ -24,8 +24,9 @@
  */
 package equipment;
 
-import java.util.List;
+import helium3.Grid;
 import helium3.Location;
+import java.util.List;
 
 /**
  * The abstract class Weapon is the superclass to all of a Vehicle's weapons and
@@ -75,5 +76,14 @@ public abstract class Weapon extends Equipment {
         armed = leg;
     }
     
-    public abstract List<Location> getTargets();
+    /**
+     * Returns a List of all the Locations this Weapon may attack from its
+     * current location (passed in thisLoc).
+     * 
+     * @param thisGrid the current Grid this Weapon is in (on the Vehicle).
+     * @param thisLoc the current Location of the Weapon (on the Vehicle).
+     * @return all the possible Locations this Weapon may attack.
+     */
+    public abstract List<Location> getPossibleTargets(Grid thisGrid,
+            Location thisLoc);
 }
