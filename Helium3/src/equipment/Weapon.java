@@ -25,9 +25,50 @@
 package equipment;
 
 /**
- *
+ * The abstract class Weapon is the superclass to all of a Vehicle's weapons and
+ * a subclass of Equipment.  It manages the armed status of all Weapons.
+ * 
  * @author David Hasegawa
  */
 public abstract class Weapon extends Equipment {
     
+    private boolean armed;
+    
+    /**
+     * Class constructor.  Sets the armed status to false.
+     */
+    public Weapon() {
+        armed = false;
+    }
+    
+    /**
+     * Returns whether this Weapon is currently ready to fire or not.
+     * 
+     * @return whether this Weapon is armed or not.
+     */
+    public boolean isArmed() {
+        return armed;
+    }
+    
+    /**
+     * Sets this Weapon's armed status to true.
+     */
+    public void arm() {
+        armed = true;
+    }
+    
+    /**
+     * Sets this Weapon's armed status to false.
+     */
+    public void disarm() {
+        armed = false;
+    }
+    
+    /**
+     * Sets this Weapon's current arm status to the specified value.
+     * @param leg the new arming status.
+     */
+    public void setArmed(boolean leg) {
+        armed = leg;
+    }
 }
