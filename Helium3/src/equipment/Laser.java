@@ -24,10 +24,30 @@
  */
 package equipment;
 
+import helium3.Grid;
+import helium3.Location;
+import java.util.List;
+import java.util.ArrayList;
+
 /**
  *
  * @author David Hasegawa
  */
 public class Laser extends Weapon {
+    
+    /**
+     * Class constructor.
+     */
+    public Laser() {
+        super();
+    }
+    
+    @Override
+    public List<Location> getPossibleTargets(Grid thisGrid, Location thisLoc) {
+        List<Location> result = new ArrayList<>();
+        
+        return result;
+    }
+    
     
 }

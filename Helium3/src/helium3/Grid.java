@@ -24,6 +24,9 @@
  */
 package helium3;
 
+import java.util.List;
+import java.util.ArrayList;
+
 /**
  * The Grid class contains a matrix (two-dimensional array) of Cells.  The
  * matrix is final and cannot be changed, but its elements can be.
@@ -99,6 +102,158 @@ public class Grid {
         int locY = loc.getY();
         return locX >= 0 && locX < getNumCols() && locY >= 0
                 && locY < getNumRows();
+    }
+    
+    /**
+     * Returns all Locations in a square around loc within radius in this Grid.
+     * A radius of 1, for example, will return 8 Locations (a 3x3 square, minus
+     * the center).
+     * 
+     * @param loc the center of the Locations to be returned.
+     * @param radius the distance from loc to the edge of the square of returned
+     * Locations.
+     * @return all Locations in a square around loc within radius.
+     */
+    public List<Location> getLocationsAround(Location loc, int radius) {
+        List<Location> result = new ArrayList<>();
+        for (int row = loc.getY() - radius; row <= loc.getY() + radius; row++) {
+            if (row < getNumRows()) {  //Check if row is out of bounds
+                for (int col = loc.getX() - radius; col <= loc.getX() + radius;
+                        col++) {
+                    if (col < getNumCols()) {  //Check if col is out of bounds
+                        //Check if row and col specify loc
+                        if (row != loc.getY() && col != loc.getX()) {
+                            result.add(new Location(col, row));
+                        }
+                    }
+                }
+            }
+        }
+        return result;
+    }
+    
+    /**
+     * Returns all the Locations north of (above) loc in this Grid.  Results are
+     * returned in north --> south order.
+     * 
+     * @param loc the starting Location.
+     * @return a List of Locations north of loc in this Grid.
+     */
+    public List<Location> getLocationsNorthOf(Location loc) {
+        List<Location> result = new ArrayList<>();
+        for (int row = 0; row < loc.getY(); row++) {
+            result.add(new Location(loc.getX(), row));
+        }
+        return result;
+    }
+    
+    /**
+     * Returns all the Locations south of (below) loc in this Grid.  Results are
+     * returned in north --> south order.
+     * 
+     * @param loc the starting Location.
+     * @return a List of Locations south of loc in this Grid.
+     */
+    public List<Location> getLocationsSouthOf(Location loc) {
+        List<Location> result = new ArrayList<>();
+        for (int row = loc.getY() + 1; row < getNumRows(); row++) {
+            result.add(new Location(loc.getX(), row));
+        }
+        return result;
+    }
+    
+    /**
+     * Returns all the Locations west of (left of) loc in this Grid.  Results
+     * are returned in west --> east order.
+     * 
+     * @param loc the starting Location.
+     * @return a List of Locations west of loc in this Grid.
+     */
+    public List<Location> getLocationsWestOf(Location loc) {
+        List<Location> result = new ArrayList<>();
+        for (int col = 0; col < loc.getX(); col++) {
+            result.add(new Location(col, loc.getY()));
+        }
+        return result;
+    }
+    
+    /**
+     * Returns all the Locations east of (right of) loc in this Grid.  Results
+     * are returned in west --> east order.
+     * 
+     * @param loc the starting Location.
+     * @return a List of Locations east of loc in this Grid.
+     */
+    public List<Location> getLocationsEastOf(Location loc) {
+        List<Location> result = new ArrayList<>();
+        for (int col = loc.getX() + 1; col < getNumCols(); col++) {
+            result.add(new Location(col, loc.getY()));
+        }
+        return result;
+    }
+    
+    /**
+     * Returns all the Locations northwest of (up and to the left of) loc in
+     * this Grid.  Results are returned starting at loc.
+     * 
+     * @param loc the starting Location.
+     * @return a List of Locations northwest of loc in this Grid.
+     */
+    public List<Location> getLocationsNorthWestOf(Location loc) {
+        List<Location> result = new ArrayList<>();
+        for (int shift = 0; loc.getX() - shift >= 0 && loc.getY() - shift >= 0;
+                shift++) {
+            result.add(new Location(loc.getX() - shift, loc.getY() - shift));
+        }
+        return result;
+    }
+    
+    /**
+     * Returns all the Locations northeast of (up and to the right of) loc in
+     * this Grid.  Results are returned starting at loc.
+     * 
+     * @param loc the starting Location.
+     * @return a List of Locations northeast of loc in this Grid.
+     */
+    public List<Location> getLocationsNorthEastOf(Location loc) {
+        List<Location> result = new ArrayList<>();
+        for (int shift = 0; loc.getX() + shift < getNumCols()
+                && loc.getY() - shift >= 0; shift++) {
+            result.add(new Location(loc.getX() + shift, loc.getY() - shift));
+        }
+        return result;
+    }
+    
+    /**
+     * Returns all the Locations southeast of (down and to the right of) loc in
+     * this Grid.  Results are returned starting at loc.
+     * 
+     * @param loc the starting Location.
+     * @return a List of Locations southeast of loc in this Grid.
+     */
+    public List<Location> getLocationsSouthEastOf(Location loc) {
+        List<Location> result = new ArrayList<>();
+        for (int shift = 0; loc.getX() + shift < getNumCols()
+                && loc.getY() + shift < getNumRows(); shift++) {
+            result.add(new Location(loc.getX() + shift, loc.getY() + shift));
+        }
+        return result;
+    }
+    
+    /**
+     * Returns all the Locations southwest of (down and to the left of) loc in
+     * this Grid.  Results are returned starting at loc.
+     * 
+     * @param loc the starting Location.
+     * @return a List of Locations southwest of loc in this Grid.
+     */
+    public List<Location> getLocationsSouthWestOf(Location loc) {
+        List<Location> result = new ArrayList<>();
+        for (int shift = 0; loc.getX() - shift >= 0
+                && loc.getY() + shift < getNumRows(); shift++) {
+            result.add(new Location(loc.getX() - shift, loc.getY() + shift));
+        }
+        return result;
     }
     
     /**
