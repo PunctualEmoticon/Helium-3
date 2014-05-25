@@ -24,6 +24,9 @@
  */
 package equipment;
 
+import java.util.List;
+import helium3.Location;
+
 /**
  * The abstract class Weapon is the superclass to all of a Vehicle's weapons and
  * a subclass of Equipment.  It manages the armed status of all Weapons.
@@ -71,4 +74,6 @@ public abstract class Weapon extends Equipment {
     public void setArmed(boolean leg) {
         armed = leg;
     }
+    
+    public abstract List<Location> getTargets();
 }
