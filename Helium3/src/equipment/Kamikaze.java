@@ -55,21 +55,7 @@ public class Kamikaze extends Weapon {
      */
     @Override
     public List<Location> getPossibleTargets(Grid thisGrid, Location thisLoc) {
-        List<Location> result = new ArrayList<>();
-        int radius = getUpgradeLevel() + 1;
-
-        //Nested for loops going from thisLoc's row and col, +/- radius
-        for (int row = thisLoc.getY() - radius; row <= thisLoc.getY() + radius;
-                row++) {
-            for (int col = thisLoc.getX() - radius;
-                    col <= thisLoc.getX() + radius; col++) {
-                Location currentLoc = new Location(col, row);
-                if (thisGrid.isValid(currentLoc)) {
-                    result.add(currentLoc);
-                }
-            }
-        }
-        return result;
+        return thisGrid.getLocationsAround(thisLoc, getUpgradeLevel() + 1);
     }
 
     /**
