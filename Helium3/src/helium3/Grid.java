@@ -28,9 +28,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * The Grid class contains a matrix (two-dimensional array) of Cells.  The
- * matrix is final and cannot be changed, but its elements can be.
- * 
+ * The Grid class contains a matrix (two-dimensional array) of Cells. The matrix
+ * is final and cannot be changed, but its elements can be.
+ *
  * @author David Hasegawa
  */
 public class Grid {
@@ -41,8 +41,8 @@ public class Grid {
      * Class constructor specifying the number of rows and columns of Cells to
      * be created. Each cell has a helium-3 value of 0.
      *
-     * @param rows
-     * @param cols
+     * @param rows the number of rows this Grid should have.
+     * @param cols the number of columns this Grid should have.
      */
     public Grid(int rows, int cols) {
         mat = new Cell[rows][cols];
@@ -91,11 +91,12 @@ public class Grid {
     public int getArea() {
         return getNumRows() * getNumCols();
     }
-    
+
     /**
      * Checks a Location to see whether its coordinates are within this Grid.
+     *
      * @param loc the Location to be checked.
-     * @return 
+     * @return whether or not loc is within this Grid.
      */
     public boolean isValid(Location loc) {
         int locX = loc.getX();
@@ -103,12 +104,13 @@ public class Grid {
         return locX >= 0 && locX < getNumCols() && locY >= 0
                 && locY < getNumRows();
     }
-    
+
     /**
      * Returns all Locations in a square around loc within radius in this Grid.
      * A radius of 1, for example, will return 8 Locations (a 3x3 square, minus
-     * the center).
-     * 
+     * the center). Results are returned left --&gt; right, then top --&gt;
+     * bottom.
+     *
      * @param loc the center of the Locations to be returned.
      * @param radius the distance from loc to the edge of the square of returned
      * Locations.
@@ -131,11 +133,11 @@ public class Grid {
         }
         return result;
     }
-    
+
     /**
-     * Returns all the Locations north of (above) loc in this Grid.  Results are
-     * returned in north --> south order.
-     * 
+     * Returns all the Locations north of (above) loc in this Grid. Results are
+     * returned in north --&gt; south order.
+     *
      * @param loc the starting Location.
      * @return a List of Locations north of loc in this Grid.
      */
@@ -146,11 +148,11 @@ public class Grid {
         }
         return result;
     }
-    
+
     /**
-     * Returns all the Locations south of (below) loc in this Grid.  Results are
-     * returned in north --> south order.
-     * 
+     * Returns all the Locations south of (below) loc in this Grid. Results are
+     * returned in north --&gt; south order.
+     *
      * @param loc the starting Location.
      * @return a List of Locations south of loc in this Grid.
      */
@@ -161,11 +163,11 @@ public class Grid {
         }
         return result;
     }
-    
+
     /**
-     * Returns all the Locations west of (left of) loc in this Grid.  Results
-     * are returned in west --> east order.
-     * 
+     * Returns all the Locations west of (left of) loc in this Grid. Results are
+     * returned in west --&gt; east order.
+     *
      * @param loc the starting Location.
      * @return a List of Locations west of loc in this Grid.
      */
@@ -176,11 +178,11 @@ public class Grid {
         }
         return result;
     }
-    
+
     /**
-     * Returns all the Locations east of (right of) loc in this Grid.  Results
-     * are returned in west --> east order.
-     * 
+     * Returns all the Locations east of (right of) loc in this Grid. Results
+     * are returned in west --&gt; east order.
+     *
      * @param loc the starting Location.
      * @return a List of Locations east of loc in this Grid.
      */
@@ -191,11 +193,11 @@ public class Grid {
         }
         return result;
     }
-    
+
     /**
      * Returns all the Locations northwest of (up and to the left of) loc in
-     * this Grid.  Results are returned starting at loc.
-     * 
+     * this Grid. Results are returned starting at loc.
+     *
      * @param loc the starting Location.
      * @return a List of Locations northwest of loc in this Grid.
      */
@@ -207,11 +209,11 @@ public class Grid {
         }
         return result;
     }
-    
+
     /**
      * Returns all the Locations northeast of (up and to the right of) loc in
-     * this Grid.  Results are returned starting at loc.
-     * 
+     * this Grid. Results are returned starting at loc.
+     *
      * @param loc the starting Location.
      * @return a List of Locations northeast of loc in this Grid.
      */
@@ -223,11 +225,11 @@ public class Grid {
         }
         return result;
     }
-    
+
     /**
      * Returns all the Locations southeast of (down and to the right of) loc in
-     * this Grid.  Results are returned starting at loc.
-     * 
+     * this Grid. Results are returned starting at loc.
+     *
      * @param loc the starting Location.
      * @return a List of Locations southeast of loc in this Grid.
      */
@@ -239,11 +241,11 @@ public class Grid {
         }
         return result;
     }
-    
+
     /**
      * Returns all the Locations southwest of (down and to the left of) loc in
-     * this Grid.  Results are returned starting at loc.
-     * 
+     * this Grid. Results are returned starting at loc.
+     *
      * @param loc the starting Location.
      * @return a List of Locations southwest of loc in this Grid.
      */
@@ -255,10 +257,11 @@ public class Grid {
         }
         return result;
     }
-    
+
     /**
      * Calculates and returns the total value of helium-3 contained within all
      * the Cells in this Grid.
+     *
      * @return the total value of helium-3 within this Grid.
      */
     public int getTotalHelium3() {
@@ -270,12 +273,13 @@ public class Grid {
         }
         return sum;
     }
-    
+
     /**
      * Returns a String of the Grid's Cell's helium-3 amounts, formatted in a
-     * grid.  If a Cell is occupied, then an asterisk will be added next to its
+     * grid. If a Cell is occupied, then an asterisk will be added next to its
      * helium-3 number.
-     * @return 
+     *
+     * @return a text version of this Grid.
      */
     @Override
     public String toString() {

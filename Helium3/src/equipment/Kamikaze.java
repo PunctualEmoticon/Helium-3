@@ -47,11 +47,14 @@ public class Kamikaze extends Weapon {
     }
 
     /**
-     * Returns all the Locations in a square around thisLoc.
+     * Returns all the Locations that can be attacked by this Kamikaze, which
+     * are the Locations in a square around thisLoc.  The size of the square is
+     * determined by this Kamikaze's upgrade level.  An upgrade level of 0 gives
+     * a 3x3 square, of 1 gives a 5x5 square, and so on.
      * 
      * @param thisGrid the Grid that this Kamikaze is in.
      * @param thisLoc the Location that this Kamikaze is in.
-     * @return
+     * @return a List of the Locations this Kamikaze can attack.
      */
     @Override
     public List<Location> getPossibleTargets(Grid thisGrid, Location thisLoc) {

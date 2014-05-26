@@ -48,7 +48,7 @@ public class Cell {
      * Class constructor that sets the helium-3 value to the specified value and
      * occupying Vehicle to null.
      *
-     * @param he3
+     * @param he3 the helium-3 value to be stored
      */
     public Cell(int he3) {
         helium3 = he3;

@@ -44,7 +44,7 @@ public abstract class Equipment {
      * Class constructor that sets the current upgrade level to the specified
      * value.
      *
-     * @param upG
+     * @param upG the upgrade level of this new Equipment.
      */
     public Equipment(int upG) {
         upgradeLevel = upG;
