@@ -34,18 +34,18 @@ import java.util.ArrayList;
  * @author David Hasegawa
  */
 public class Laser extends Weapon {
-    
+
     /**
      * Class constructor.
      */
     public Laser() {
         super();
     }
-    
+
     @Override
     public List<Location> getPossibleTargets(Grid thisGrid, Location thisLoc) {
         List<Location> result = new ArrayList<>();
-        
+
         for (Location listLoc : thisGrid.getLocationsNorthOf(thisLoc)) {
             result.add(listLoc);
         }
@@ -70,12 +70,12 @@ public class Laser extends Weapon {
         for (Location listLoc : thisGrid.getLocationsNorthWestOf(thisLoc)) {
             result.add(listLoc);
         }
-        
+
         return result;
     }
-    
+
     /**
-     * Attacks all Vehicles in the direction dir degrees.  If this Laser
+     * Attacks all Vehicles in the direction dir degrees. If this Laser
      * encounters a Vehicle that is not destroyed by it (like a shielded
      * Vehicle), then this Laser stops.
      * <p>
@@ -86,19 +86,68 @@ public class Laser extends Weapon {
      * <li>4000 and 4359: four lasers are fired perpendicularly to each other.
      * <li>8000 and 8359: eight lasers are fired, in all directions.
      * </ul>
-     * @param dir the number and direction of the lasers to be fired.
+     *
+     * @param gr the Grid this Laser is currently in.
+     * @param loc the Location this Laser is currently in.
+     * @param dir the number and direction of the lasers to be fired. 0 is up,
+     * 90 is right, and so on.
      */
-    public void attack(int dir) {
+    public void attack(Grid gr, Location loc, int dir) {
         if (dir >= 0 && dir < 360) {
-            
+
         } else if (dir >= 2000 && dir < 2360) {
-            
+
         } else if (dir >= 4000 && dir < 4360) {
-            
+
         } else if (dir >= 8000 && dir < 8360) {
-            
+
         } else {
             throw new UnsupportedOperationException();
+        }
+    }
+
+    /**
+     * Helper method for the attack method that fires a laser in only one
+     * direction. Precondition: 0 &lt;= dir &lt; 360 and dir is a multiple of
+     * 45.
+     *
+     * @param gr the Grid this Laser is currently in.
+     * @param loc the Location this Laser is currently in.
+     * @param dir the direction to attack towards. 0 is up, 90 is right, and so
+     * on.
+     */
+    private void attackOneDir(Grid gr, Location loc, int dir) {
+        List<Location> targets;
+        
+        if (dir == 0) {
+            targets = gr.getLocationsNorthOf(loc);
+        } else if (dir == 45) {
+            targets = gr.getLocationsNorthEastOf(loc);
+        } else if (dir == 90) {
+            targets = gr.getLocationsEastOf(loc);
+        } else if (dir == 135) {
+            targets = gr.getLocationsSouthEastOf(loc);
+        } else if (dir == 180) {
+            targets = gr.getLocationsSouthOf(loc);
+        } else if (dir == 225) {
+            targets = gr.getLocationsSouthWestOf(loc);
+        } else if (dir == 270) {
+            targets = gr.getLocationsWestOf(loc);
+        } else if (dir == 315) {
+            targets = gr.getLocationsNorthWestOf(loc);
+        } else {
+            throw new UnsupportedOperationException(
+                    "Laser.attackOneDir: Invalid direction");
+        }
+        
+        for (Location targetLoc : targets) {
+            if (gr.getCell(targetLoc).isOccupied()) {
+                //if statement attacks and checks if loop should continue
+                //if Vehicle is not destroyed, break.
+                if (!gr.getCell(targetLoc).getVehicle().underAttackBy(this)) {
+                    break;
+                }
+            }
         }
     }
 }

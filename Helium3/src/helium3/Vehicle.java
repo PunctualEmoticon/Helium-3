@@ -60,7 +60,8 @@ public class Vehicle {
      * and so on).
      * 
      * @param weap the attacking weapon.
-     * @return whether or not this Vehicle is destroyed by weap.
+     * @return whether or not this Vehicle is destroyed by weap.  True if
+     * destroyed.
      */
     public boolean underAttackBy(Weapon weap) {
         return true;

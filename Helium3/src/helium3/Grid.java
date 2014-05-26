@@ -136,14 +136,14 @@ public class Grid {
 
     /**
      * Returns all the Locations north of (above) loc in this Grid. Results are
-     * returned in north --&gt; south order.
+     * returned starting at loc.
      *
      * @param loc the starting Location.
      * @return a List of Locations north of loc in this Grid.
      */
     public List<Location> getLocationsNorthOf(Location loc) {
         List<Location> result = new ArrayList<>();
-        for (int row = 0; row < loc.getY(); row++) {
+        for (int row = loc.getY(); row >= 0; row--) {
             result.add(new Location(loc.getX(), row));
         }
         return result;
@@ -151,7 +151,7 @@ public class Grid {
 
     /**
      * Returns all the Locations south of (below) loc in this Grid. Results are
-     * returned in north --&gt; south order.
+     * returned starting at loc.
      *
      * @param loc the starting Location.
      * @return a List of Locations south of loc in this Grid.
@@ -166,14 +166,14 @@ public class Grid {
 
     /**
      * Returns all the Locations west of (left of) loc in this Grid. Results are
-     * returned in west --&gt; east order.
+     * returned starting at loc.
      *
      * @param loc the starting Location.
      * @return a List of Locations west of loc in this Grid.
      */
     public List<Location> getLocationsWestOf(Location loc) {
         List<Location> result = new ArrayList<>();
-        for (int col = 0; col < loc.getX(); col++) {
+        for (int col = loc.getX(); col >= 0; col--) {
             result.add(new Location(col, loc.getY()));
         }
         return result;
@@ -181,7 +181,7 @@ public class Grid {
 
     /**
      * Returns all the Locations east of (right of) loc in this Grid. Results
-     * are returned in west --&gt; east order.
+     * are returned starting at loc.
      *
      * @param loc the starting Location.
      * @return a List of Locations east of loc in this Grid.
