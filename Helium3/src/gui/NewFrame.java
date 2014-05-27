@@ -109,16 +109,6 @@ public class NewFrame extends JFrame{
     
     public void makeRunHappen(ArrayList<Player> a)
     {
-       for(int i = 0; i < a.size(); i++)
-       {
-           for(int j = 0;j < a.get(i).getVehicles().size(); j++)
-           {
-               if(i == 0)
-               {
-                   
-               }
-           }
-       }
        while(isRunningHappeningNow) 
        {
            
