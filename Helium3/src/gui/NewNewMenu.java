@@ -79,19 +79,19 @@ public class NewNewMenu
         quit.addActionListener(new exitGameListener());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel1.setForeground(Color.black);
         jLabel1.setText("Main Menu");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel3.setForeground(Color.black);
         jLabel3.setText("David Hasegawa");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel4.setForeground(Color.black);
         jLabel4.setText("Matthew Speck");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel5.setForeground(Color.black);
         jLabel5.setText("Written By:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(pane);
@@ -147,7 +147,7 @@ public class NewNewMenu
         playerMenu.setPreferredSize(new java.awt.Dimension(500, 500));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel11.setForeground(Color.black);
         jLabel11.setText("Number of players?");
         jLabel11.setPreferredSize(new java.awt.Dimension(154, 22));
 
@@ -164,7 +164,7 @@ public class NewNewMenu
         jButton3.addActionListener(new gameStarter4());
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(0, 255, 255));
+        jLabel21.setForeground(Color.black);
         jLabel21.setText("And Eddy Cepeda I suppose");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(playerMenu);
@@ -279,7 +279,7 @@ public class NewNewMenu
             names.add(JOptionPane.showInputDialog("Enter player one name"));
             names.add(JOptionPane.showInputDialog("Enter player two name"));
             names.add(JOptionPane.showInputDialog("Enter player three name"));
-            names.add(JOptionPane.showInputDialog("Enter player three name"));
+            names.add(JOptionPane.showInputDialog("Enter player four name"));
             Game g = new Game(names);
             g.newGame();
         }

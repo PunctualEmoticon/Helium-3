@@ -31,6 +31,7 @@ import helium3.Vehicle;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
@@ -109,7 +110,14 @@ public class NewFrame extends JFrame{
             for(int c = 0; c < gr.getNumCols(); c++)
             {
                 Location loc = new Location(r,c);
-                gr.getCell(loc).getHelium3Amount();
+                if(gr.getCell(loc).getHelium3Amount()>1)
+                {
+                    g.setColor(Color.black);
+                    g.drawRect(locToPixX(r), locToPixY(c), 35, 35);
+                    g.setColor(new Color(0,0,gr.getCell(loc).getHelium3Amount()/5,125));
+                    g.fillRect(locToPixX(r)+1, locToPixY(c)+1,33, 33);
+                }
+                
                 if(gr.getCell(loc).isOccupied())
                 {
                     if(gr.getCell(loc).getVehicle().getPlayer()== arr.get(0))
@@ -139,6 +147,23 @@ public class NewFrame extends JFrame{
     {
         gr = new Grid(20, 20);
         arr = a;
+        if(arr.size()==2)
+        {
+            JOptionPane.showMessageDialog(null ,arr.get(0).getName() + " is Green \n"
+            + arr.get(1).getName() + " is Yellow");
+            
+        }
+        if(arr.size()== 3)
+        {
+            JOptionPane.showMessageDialog(null ,arr.get(0).getName() + " is Green \n"
+            + arr.get(1).getName() + " is Yellow \n" + arr.get(2).getName() + " is Purple");
+        }
+        if(arr.size() == 4)
+        {
+            JOptionPane.showMessageDialog(null ,arr.get(0).getName() + " is Green \n"
+            + arr.get(1).getName() + " is Yellow \n" + arr.get(2).getName() + " is Purple \n" 
+            + arr.get(3).getName() + " is Red");
+        }
         
         //Set Players' Vehicle positions.
         if (a.size() >= 1) {
@@ -197,7 +222,7 @@ public class NewFrame extends JFrame{
         return (y*35);
     }
     
-    class click implements MouseListener
+    class click extends MouseAdapter
     {
 
         @Override
