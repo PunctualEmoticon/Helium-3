@@ -126,7 +126,7 @@ public class NewFrame extends JFrame{
                     }
                     else
                     {
-                        g.drawImage(rtank, 345, 345, this);
+                        g.drawImage(rtank,locToPixX(r),locToPixY(c), this);
                     }
                 }
             }
