@@ -28,7 +28,7 @@ import gui.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
-import java.util.*;
+import java.util.ArrayList;
 
 
 /**
@@ -37,14 +37,14 @@ import java.util.*;
  */
 public class Game 
 {
-    private ArrayList players;
+    private ArrayList<Player> players;
     private Graphic g;
     private Grid gr;
     NewFrame frame;
     
     public Game(ArrayList<String> a)
     {
-        players  = new ArrayList();
+        players  = new ArrayList<>();
         for(int i = 0; i< a.size(); i++)
         {
             Player player = new Player(a.get(i));
