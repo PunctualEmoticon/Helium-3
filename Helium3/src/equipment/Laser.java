@@ -75,9 +75,9 @@ public class Laser extends Weapon {
     }
 
     /**
-     * Attacks all Vehicles in the direction dir degrees. If this Laser
-     * encounters a Vehicle that is not destroyed by it (like a shielded
-     * Vehicle), then this Laser stops.
+     * Attacks all Vehicles in the direction dir degrees (in multiples of 45
+     * degrees).  If this Laser encounters a Vehicle that is not destroyed by it
+     * (like a shielded Vehicle), then this Laser stops.
      * <p>
      * If dir is between
      * <ul>
@@ -94,16 +94,63 @@ public class Laser extends Weapon {
      */
     public void attack(Grid gr, Location loc, int dir) {
         if (dir >= 0 && dir < 360) {
-
+            attackOneDir(gr, loc, processDir(dir));
+            
         } else if (dir >= 2000 && dir < 2360) {
-
+            dir -= 2000;
+            if (dir >= 180) {  //Slightly more efficient than while loop.
+                dir -= 180;
+            }
+            attackOneDir(gr, loc, processDir(dir));
+            attackOneDir(gr, loc, processDir(dir + 180));
+            
         } else if (dir >= 4000 && dir < 4360) {
+            dir -= 4000;
+            while (dir >= 90) {
+                dir -= 90;
+            }
+            
+            for (int i = 0; i < 360; i += 90) {
+                attackOneDir(gr, loc, processDir(dir + i));
+            }
 
         } else if (dir >= 8000 && dir < 8360) {
+            //Doesn't really matter what dir is, because lasers are fired in all
+            //directions.
+            for (int i = 0; i < 360; i += 45) {
+                attackOneDir(gr, loc, i);
+            }
 
         } else {
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException(
+                    "Laser.attack: Invalid Direction");
         }
+    }
+    
+    /**
+     * Helper method that takes a number and rounds to the nearest multiple of
+     * 45 that is greater than or equal to 0 and less than 360.
+     * 
+     * @param num the number to process.
+     * @return num rounded and between 0 and 360.
+     */
+    private int processDir(int num) {
+        //Loops to make num be greater than or equal to 0 and less than 360.
+        while (num < 0) {
+            num += 360;
+        }
+        while (num >= 360) {
+            num -= 360;
+        }
+        
+        if (num % 45 != 0) {
+            if (num % 45 <= (45 / 2)) {
+                num -= num % 45;
+            } else {
+                num += 45 - num % 45;
+            }
+        }
+        return num;
     }
 
     /**
