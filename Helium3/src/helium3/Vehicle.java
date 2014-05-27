@@ -68,8 +68,52 @@ public class Vehicle {
         return true;
     }
     
-    public Player returnPlayer()
+    /**
+     * Returns this Vehicle's owning Player.
+     * @return this Vehicle's owner
+     */
+    public Player getPlayer()
     {
         return owningPlayer;
+    }
+    
+    /**
+     * Returns this Vehicle's Drill.
+     * @return this Vehicle's Drill.
+     */
+    public Drill getDrill() {
+        return drill;
+    }
+    
+    /**
+     * Returns this Vehicle's Kamikaze Weapon.
+     * @return this Vehicle's Kamikaze.
+     */
+    public Kamikaze getKamikaze() {
+        return kamikaze;
+    }
+    
+    /**
+     * Returns this Vehicle's Laser Weapon.
+     * @return this Vehicle's Laser.
+     */
+    public Laser getLaser() {
+        return laser;
+    }
+    
+    /**
+     * Return's this Vehicle's Missile Weapon.
+     * @return this Vehicle's Missile.
+     */
+    public Missile getMissile() {
+        return missile;
+    }
+    
+    /**
+     * Return's this Vehicle's Shield.
+     * @return this Vehicle's Shield.
+     */
+    public Shield getShield() {
+        return shield;
     }
 }

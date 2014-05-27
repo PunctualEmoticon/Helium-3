@@ -112,15 +112,15 @@ public class NewFrame extends JFrame{
                 gr.getCell(loc).getHelium3Amount();
                 if(gr.getCell(loc).isOccupied())
                 {
-                    if(gr.getCell(loc).getVehicle().returnPlayer()== arr.get(0))
+                    if(gr.getCell(loc).getVehicle().getPlayer()== arr.get(0))
                     {
                         g.drawImage(gtank,locToPixX(r),locToPixY(c), this);
                     }
-                    else if(gr.getCell(loc).getVehicle().returnPlayer()== arr.get(1))
+                    else if(gr.getCell(loc).getVehicle().getPlayer()== arr.get(1))
                     {
                         g.drawImage(ytank,locToPixX(r),locToPixY(c), this);
                     }
-                    else if(gr.getCell(loc).getVehicle().returnPlayer()== arr.get(2))
+                    else if(gr.getCell(loc).getVehicle().getPlayer()== arr.get(2))
                     {
                         g.drawImage(ptank,locToPixX(r),locToPixY(c), this);
                     }
