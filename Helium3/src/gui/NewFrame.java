@@ -110,12 +110,39 @@ public class NewFrame extends JFrame{
     public void makeRunHappen(ArrayList<Player> a)
     {
         gr = new Grid(20, 20);
+        
+        //Set Players' Vehicle positions.
         if (a.size() >= 1) {
+            //First Player is in the top left
             gr.getCell(new Location(0, 2)).setVehicle(a.get(0).getVehicleList().get(0));
             gr.getCell(new Location(1, 2)).setVehicle(a.get(0).getVehicleList().get(1));
             gr.getCell(new Location(2, 2)).setVehicle(a.get(0).getVehicleList().get(2));
             gr.getCell(new Location(2, 1)).setVehicle(a.get(0).getVehicleList().get(3));
             gr.getCell(new Location(2, 0)).setVehicle(a.get(0).getVehicleList().get(4));
+        }
+        if (a.size() >= 2) {
+            //Second Player is in the bottom right
+            gr.getCell(new Location(gr.getNumCols() - 1, gr.getNumRows() - 3)).setVehicle(a.get(1).getVehicleList().get(0));
+            gr.getCell(new Location(gr.getNumCols() - 2, gr.getNumRows() - 3)).setVehicle(a.get(1).getVehicleList().get(1));
+            gr.getCell(new Location(gr.getNumCols() - 3, gr.getNumRows() - 3)).setVehicle(a.get(1).getVehicleList().get(2));
+            gr.getCell(new Location(gr.getNumCols() - 3, gr.getNumRows() - 2)).setVehicle(a.get(1).getVehicleList().get(3));
+            gr.getCell(new Location(gr.getNumCols() - 3, gr.getNumRows() - 1)).setVehicle(a.get(1).getVehicleList().get(4));
+        }
+        if (a.size() >= 3) {
+            //Third Player is in the top right
+            gr.getCell(new Location(gr.getNumCols() - 1, 2)).setVehicle(a.get(2).getVehicleList().get(0));
+            gr.getCell(new Location(gr.getNumCols() - 2, 2)).setVehicle(a.get(2).getVehicleList().get(1));
+            gr.getCell(new Location(gr.getNumCols() - 3, 2)).setVehicle(a.get(2).getVehicleList().get(2));
+            gr.getCell(new Location(gr.getNumCols() - 3, 1)).setVehicle(a.get(2).getVehicleList().get(3));
+            gr.getCell(new Location(gr.getNumCols() - 3, 0)).setVehicle(a.get(2).getVehicleList().get(4));
+        }
+        if (a.size() >= 4) {
+            //Fourth Player is in the bottom left
+            gr.getCell(new Location(0, gr.getNumRows() - 3)).setVehicle(a.get(0).getVehicleList().get(0));
+            gr.getCell(new Location(1, gr.getNumRows() - 3)).setVehicle(a.get(0).getVehicleList().get(1));
+            gr.getCell(new Location(2, gr.getNumRows() - 3)).setVehicle(a.get(0).getVehicleList().get(2));
+            gr.getCell(new Location(2, gr.getNumRows() - 2)).setVehicle(a.get(0).getVehicleList().get(3));
+            gr.getCell(new Location(2, gr.getNumRows() - 1)).setVehicle(a.get(0).getVehicleList().get(4));
         }
         
        while(isRunningHappeningNow) 
