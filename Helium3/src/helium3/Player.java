@@ -24,18 +24,47 @@
  */
 package helium3;
 
+import java.util.List;
 import java.util.ArrayList;
 
 /**
- *
+ * A Player object represents one player of the game.  Each Player has a name
+ * and a List of Vehicles that belong to it.
+ * 
  * @author David Hasegawa
  */
 public class Player {
-    private ArrayList<Vehicle> arr;
-    private String name;
-    
-    Player(String str) {
-        name = str;
+
+    private final List<Vehicle> vehicleList;
+    private final String name;
+
+    /**
+     * Class constructor. Creates 5 Vehicles for this Player.
+     *
+     * @param newName this Player's name.
+     */
+    Player(String newName) {
+        name = newName;
+        vehicleList = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            vehicleList.add(new Vehicle());
+        }
     }
     
+    /**
+     * Returns the name of this Player.
+     * @return this Player's name.
+     */
+    public String getName() {
+        return name;
+    }
+    
+    /**
+     * Returns the stored List of Vehicles.
+     * @return this Player's List of Vehicles.
+     */
+    public List<Vehicle> getVehicleList() {
+        return vehicleList;
+    }
+
 }
