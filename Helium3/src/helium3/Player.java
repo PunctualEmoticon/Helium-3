@@ -47,7 +47,7 @@ public class Player {
         name = newName;
         vehicleList = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            vehicleList.add(new Vehicle());
+            vehicleList.add(new Vehicle(this));
         }
     }
     

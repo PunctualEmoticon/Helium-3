@@ -114,8 +114,8 @@ public class NewFrame extends JFrame{
             gr.getCell(new Location(0, 2)).setVehicle(a.get(0).getVehicleList().get(0));
             gr.getCell(new Location(1, 2)).setVehicle(a.get(0).getVehicleList().get(1));
             gr.getCell(new Location(2, 2)).setVehicle(a.get(0).getVehicleList().get(2));
-            gr.getCell(new Location(0, 2)).setVehicle(a.get(0).getVehicleList().get(0));
-            gr.getCell(new Location(0, 2)).setVehicle(a.get(0).getVehicleList().get(0));
+            gr.getCell(new Location(2, 1)).setVehicle(a.get(0).getVehicleList().get(3));
+            gr.getCell(new Location(2, 0)).setVehicle(a.get(0).getVehicleList().get(4));
         }
         
        while(isRunningHappeningNow) 
