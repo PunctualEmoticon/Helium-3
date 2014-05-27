@@ -122,10 +122,12 @@ public class Grid {
     public List<Location> getLocationsAround(Location loc, int radius) {
         List<Location> result = new ArrayList<>();
         for (int row = loc.getY() - radius; row <= loc.getY() + radius; row++) {
-            if (row < getNumRows()) {  //Check if row is out of bounds
+            //Check if row is out of bounds
+            if (row >= 0 && row < getNumRows()) {
                 for (int col = loc.getX() - radius; col <= loc.getX() + radius;
                         col++) {
-                    if (col < getNumCols()) {  //Check if col is out of bounds
+                    //Check if col is out of bounds
+                    if (col >= 0 && col < getNumCols()) {
                         //Check if row and col specify loc
                         if (row != loc.getY() && col != loc.getX()) {
                             result.add(new Location(col, row));
