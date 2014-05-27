@@ -34,7 +34,8 @@ public class Player {
     private ArrayList<Vehicle> arr;
     private String name;
     
-    Player(String str) {
+    Player(String str)
+    {
         name = str;
     }
     
