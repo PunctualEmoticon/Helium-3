@@ -67,4 +67,9 @@ public class Vehicle {
     public boolean underAttackBy(Weapon weap) {
         return true;
     }
+    
+    public Player returnPlayer()
+    {
+        return owningPlayer;
+    }
 }
