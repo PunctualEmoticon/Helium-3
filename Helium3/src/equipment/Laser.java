@@ -93,6 +93,9 @@ public class Laser extends Weapon {
      * 90 is right, and so on.
      */
     public void attack(Grid gr, Location loc, int dir) {
+        if (!isArmed()) {
+            return;
+        }
         if (dir >= 0 && dir < 360) {
             attackOneDir(gr, loc, processDir(dir));
             
