@@ -26,6 +26,7 @@ package helium3;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.lang.Math;
 
 /**
  * The Grid class contains a matrix (two-dimensional array) of Cells. The matrix
@@ -39,7 +40,8 @@ public class Grid {
 
     /**
      * Class constructor specifying the number of rows and columns of Cells to
-     * be created. Each cell has a helium-3 value of 0.
+     * be created. generateHelium3 is called to distribute helium-3 around this
+     * Grid.
      *
      * @param rows the number of rows this Grid should have.
      * @param cols the number of columns this Grid should have.
@@ -53,6 +55,7 @@ public class Grid {
                 mat[r][c] = new Cell();
             }
         }
+        generateHelium3();
     }
 
     /**
@@ -106,10 +109,10 @@ public class Grid {
     }
 
     /**
-     * Returns all Locations in a square around loc within radius in this Grid.
-     * A radius of 1, for example, will return 8 Locations (a 3x3 square, minus
-     * the center). Results are returned left --&gt; right, then top --&gt;
-     * bottom.
+     * Returns all Locations in a square around loc within radius in this Grid,
+     * assuming they're within bounds.  A radius of 1, for example, will return
+     * 8 Locations (a 3x3 square, minus the center). Results are returned
+     * left --&gt; right, then top --&gt; bottom.
      *
      * @param loc the center of the Locations to be returned.
      * @param radius the distance from loc to the edge of the square of returned
@@ -274,6 +277,31 @@ public class Grid {
         return sum;
     }
 
+    /**
+     * Adds random amounts of helium-3 to this Grid, centered around 3–6
+     * hotspots.
+     */
+    public void generateHelium3() {
+        List<Location> hotspots = new ArrayList<>();
+        int numHotspots = (int)(Math.random() * 3 + 3); //Between 3 and 6
+        
+        for (int i = 0; i < numHotspots; i++) {
+            int row = (int)(Math.random() * getNumRows());
+            int col = (int)(Math.random() * getNumCols());
+            hotspots.add(new Location(col, row));
+        }
+        for (Location spot : hotspots) {
+            int radius = (int)(Math.random() * 2 + 1); //Between 1 and 2
+            List<Location> spotNeighbors = getLocationsAround(spot, radius);
+            for (Location neigh : spotNeighbors) {
+                //Between 200 and 1000
+                int he3Amount = (int)(Math.random() * 800 + 200);
+                getCell(neigh).changeHelium3Amount(he3Amount);
+            }
+            getCell(spot).changeHelium3Amount(1000);
+        }
+    }
+    
     /**
      * Returns a String of the Grid's Cell's helium-3 amounts, formatted in a
      * grid. If a Cell is occupied, then an asterisk will be added next to its
