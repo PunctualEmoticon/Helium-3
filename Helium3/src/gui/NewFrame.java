@@ -138,11 +138,11 @@ public class NewFrame extends JFrame{
         }
         if (a.size() >= 4) {
             //Fourth Player is in the bottom left
-            gr.getCell(new Location(0, gr.getNumRows() - 3)).setVehicle(a.get(0).getVehicleList().get(0));
-            gr.getCell(new Location(1, gr.getNumRows() - 3)).setVehicle(a.get(0).getVehicleList().get(1));
-            gr.getCell(new Location(2, gr.getNumRows() - 3)).setVehicle(a.get(0).getVehicleList().get(2));
-            gr.getCell(new Location(2, gr.getNumRows() - 2)).setVehicle(a.get(0).getVehicleList().get(3));
-            gr.getCell(new Location(2, gr.getNumRows() - 1)).setVehicle(a.get(0).getVehicleList().get(4));
+            gr.getCell(new Location(0, gr.getNumRows() - 3)).setVehicle(a.get(3).getVehicleList().get(0));
+            gr.getCell(new Location(1, gr.getNumRows() - 3)).setVehicle(a.get(3).getVehicleList().get(1));
+            gr.getCell(new Location(2, gr.getNumRows() - 3)).setVehicle(a.get(3).getVehicleList().get(2));
+            gr.getCell(new Location(2, gr.getNumRows() - 2)).setVehicle(a.get(3).getVehicleList().get(3));
+            gr.getCell(new Location(2, gr.getNumRows() - 1)).setVehicle(a.get(3).getVehicleList().get(4));
         }
         
        while(isRunningHappeningNow) 
