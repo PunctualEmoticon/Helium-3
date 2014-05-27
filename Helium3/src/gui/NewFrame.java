@@ -109,6 +109,15 @@ public class NewFrame extends JFrame{
     
     public void makeRunHappen(ArrayList<Player> a)
     {
+        gr = new Grid(20, 20);
+        if (a.size() >= 1) {
+            gr.getCell(new Location(0, 2)).setVehicle(a.get(0).getVehicleList().get(0));
+            gr.getCell(new Location(1, 2)).setVehicle(a.get(0).getVehicleList().get(1));
+            gr.getCell(new Location(2, 2)).setVehicle(a.get(0).getVehicleList().get(2));
+            gr.getCell(new Location(0, 2)).setVehicle(a.get(0).getVehicleList().get(0));
+            gr.getCell(new Location(0, 2)).setVehicle(a.get(0).getVehicleList().get(0));
+        }
+        
        while(isRunningHappeningNow) 
        {
            

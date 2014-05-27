@@ -30,16 +30,21 @@ import helium3.Location;
 import java.lang.Math;
 
 /**
- *
+ * A drill extracts helium-3 from the squares surrounding it and records the
+ * stored helium-3 within itself.
+ * 
  * @author David Hasegawa
  */
 public class Drill extends Equipment {
+    
+    private int helium3;
     
     /**
      * Class constructor.
      */
     public Drill() {
         super();
+        helium3 = 0;
     }
     
     /**
@@ -79,6 +84,7 @@ public class Drill extends Equipment {
                 }
             }
         }
+        helium3 += sum;
         return sum;
     }
         

@@ -32,19 +32,21 @@ import equipment.*;
  */
 public class Vehicle {
     
+    final private Player owningPlayer;
     final private Drill drill;
     final private Shield shield;
     final private Kamikaze kamikaze;
     final private Laser laser;
     final private Missile missile;
     private int moveRadius;
-    private int helium3;
     
     /**
      * Class constructor.  Sets this Vehicle's move radius to 4 and stored
      * helium-3 to 0.
+     * @param owner the Player that this Vehicle belongs to.
      */
-    public Vehicle() {
+    public Vehicle(Player owner) {
+        owningPlayer = owner;
         drill = new Drill();
         shield = new Shield();
         kamikaze = new Kamikaze();
