@@ -53,7 +53,6 @@ public class Vehicle {
         laser = new Laser();
         missile = new Missile();
         moveRadius = 4;
-        helium3 = 0;
     }
     
     /**
