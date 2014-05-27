@@ -66,6 +66,7 @@ public class NewFrame extends JFrame{
     private Image rlaz;
     private Image plaz;
     private Image glaz;
+    private ArrayList<Player> arr;
     
     public NewFrame(){
         
@@ -101,8 +102,35 @@ public class NewFrame extends JFrame{
     public void paintComponent(Graphics g){
         
         g.drawImage(back, 0, 0, this);
-        g.drawImage(gtank, 50, 50, this);
-        g.drawImage(gtank, 214, 345, this);
+        
+        
+        for(int r = 0; r < gr.getNumRows();r++)
+        {
+            for(int c = 0; c < gr.getNumCols(); c++)
+            {
+                Location loc = new Location(r,c);
+                gr.getCell(loc).getHelium3Amount();
+                if(gr.getCell(loc).isOccupied())
+                {
+                    if(gr.getCell(loc).getVehicle().returnPlayer()== arr.get(0))
+                    {
+                        g.drawImage(gtank,locToPixX(r),locToPixY(c), this);
+                    }
+                    else if(gr.getCell(loc).getVehicle().returnPlayer()== arr.get(1))
+                    {
+                        g.drawImage(ytank,locToPixX(r),locToPixY(c), this);
+                    }
+                    else if(gr.getCell(loc).getVehicle().returnPlayer()== arr.get(2))
+                    {
+                        g.drawImage(ptank,locToPixX(r),locToPixY(c), this);
+                    }
+                    else
+                    {
+                        g.drawImage(rtank, 345, 345, this);
+                    }
+                }
+            }
+        }
     }
     
     
@@ -110,6 +138,7 @@ public class NewFrame extends JFrame{
     public void makeRunHappen(ArrayList<Player> a)
     {
         gr = new Grid(20, 20);
+        arr = a;
         
         //Set Players' Vehicle positions.
         if (a.size() >= 1) {
@@ -160,12 +189,12 @@ public class NewFrame extends JFrame{
     
     public int locToPixX(int x)
     {
-        return (x*35)+6;
+        return (x*35);
     }
     
     public int locToPixY(int y)
     {
-        return (y*35)+28;
+        return (y*35);
     }
     
     class click implements MouseListener
