@@ -67,6 +67,7 @@ public class NewFrame extends JFrame{
     private Image rlaz;
     private Image plaz;
     private Image glaz;
+    private Image sel;
     private ArrayList<Player> arr;
     
     public NewFrame(){
@@ -90,6 +91,7 @@ public class NewFrame extends JFrame{
         plaz = ImageIO.read(this.getClass().getResource("/resources/PrplLazer.png"));
         glaz = ImageIO.read(this.getClass().getResource("/resources/GreenLazer.png"));
         mis = ImageIO.read(this.getClass().getResource("/resources/missile.png"));
+        sel = ImageIO.read(this.getClass().getResource("/resources/select.png"));
         }catch(Exception e){System.out.println("could not find image");}
     }
     
