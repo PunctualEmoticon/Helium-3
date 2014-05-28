@@ -129,7 +129,7 @@ public class Grid {
                     //Check if col is out of bounds
                     if (col >= 0 && col < getNumCols()) {
                         //Check if row and col specify loc
-                        if (row != loc.getY() && col != loc.getX()) {
+                        if (row != loc.getY() || col != loc.getX()) {
                             result.add(new Location(col, row));
                         }
                     }
@@ -285,7 +285,7 @@ public class Grid {
      */
     public void generateHelium3() {
         List<Location> hotspots = new ArrayList<>();
-        int numHotspots = (int)(Math.random() * 3 + 3); //Between 3 and 6
+        int numHotspots = (int)(Math.random() * 3 + 4); //Between 4 and 7
         
         for (int i = 0; i < numHotspots; i++) {
             int row = (int)(Math.random() * getNumRows());
@@ -293,7 +293,7 @@ public class Grid {
             hotspots.add(new Location(col, row));
         }
         for (Location spot : hotspots) {
-            depositHelium3(spot, 5000);
+            depositHelium3(spot, 10_000);
         }
     }
     
