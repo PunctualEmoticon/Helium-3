@@ -110,11 +110,11 @@ public class NewFrame extends JFrame{
             for(int c = 0; c < gr.getNumCols(); c++)
             {
                 Location loc = new Location(r,c);
-                if(gr.getCell(loc).getHelium3Amount()>1)
+                if(gr.getCell(loc).getBoundedHelium3Amount()>1)
                 {
                     g.setColor(Color.black);
                     g.drawRect(locToPixX(r), locToPixY(c), 35, 35);
-                    g.setColor(new Color(0,0,gr.getCell(loc).getHelium3Amount()/5,125));
+                    g.setColor(new Color(0,0,gr.getCell(loc).getBoundedHelium3Amount()/5,125));
                     g.fillRect(locToPixX(r)+1, locToPixY(c)+1,33, 33);
                 }
                 

@@ -293,14 +293,7 @@ public class Grid {
             hotspots.add(new Location(col, row));
         }
         for (Location spot : hotspots) {
-            int radius = (int)(Math.random() * 2 + 1); //Between 1 and 2
-            List<Location> spotNeighbors = getLocationsAround(spot, radius);
-            for (Location neigh : spotNeighbors) {
-                //Between 200 and 1000
-                int he3Amount = (int)(Math.random() * 800 + 200);
-                getCell(neigh).changeHelium3Amount(he3Amount);
-            }
-            getCell(spot).changeHelium3Amount(1000);
+            depositHelium3(spot, 5000);
         }
     }
     
@@ -318,8 +311,8 @@ public class Grid {
         
         int i = 0; //List index, leads to first deposit always in center
         while (amount > 0) {
-            //Anywhere between 0 and all the helium-3
-            int depositAmount = (int)(Math.random() * amount);
+            //Anywhere between 1 and all the helium-3
+            int depositAmount = (int)(Math.random() * amount + 1);
             getCell(locNeighbors.get(i)).changeHelium3Amount(depositAmount);
             amount -= depositAmount;
             
