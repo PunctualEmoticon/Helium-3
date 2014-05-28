@@ -305,6 +305,31 @@ public class Grid {
     }
     
     /**
+     * Deposits the given amount of helium-3 randomly around the given Location.
+     * 
+     * @param loc the center of the deposit.
+     * @param amount the total value of the deposit.
+     */
+    public void depositHelium3(Location loc, int amount) {
+        int radius = (int)(Math.random() * 2 + 1); //Between 1 and 2
+        List<Location> locNeighbors = getLocationsAround(loc, radius);
+        //Add center Location that getLocationsAround ignores to beginning
+        locNeighbors.add(0, loc);
+        
+        int i = 0; //List index, leads to first deposit always in center
+        while (amount > 0) {
+            //Anywhere between 0 and all the helium-3
+            int depositAmount = (int)(Math.random() * amount);
+            getCell(locNeighbors.get(i)).changeHelium3Amount(depositAmount);
+            amount -= depositAmount;
+            
+            //i is randomly set to new locNeighbors element
+            i = (int)(Math.random() * locNeighbors.size());
+        }
+        getCell(loc).changeHelium3Amount(1000);
+    }
+    
+    /**
      * Returns a String of the Grid's Cell's helium-3 amounts, formatted in a
      * grid. If a Cell is occupied, then an asterisk will be added next to its
      * helium-3 number.
