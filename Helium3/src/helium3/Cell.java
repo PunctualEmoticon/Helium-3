@@ -63,6 +63,19 @@ public class Cell {
     public int getHelium3Amount() {
         return helium3;
     }
+    
+    /**
+     * Returns the current amount of helium-3 contained within this Cell, unless
+     * the contained value is greater than 1000, in which case it returns 1000.
+     * 
+     * @return the stored helium-3 value, up to 1000.
+     */
+    public int getBoundedHelium3Amount() {
+        if (helium3 > 1000) {
+            return 1000;
+        }
+        return helium3;
+    }
 
     /**
      * Sets the current amount of helium-3 contained within this Cell to the
