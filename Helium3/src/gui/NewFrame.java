@@ -145,18 +145,67 @@ public class NewFrame extends JFrame{
                         {
                             g.drawImage(gtank,locToPixX(r),locToPixY(c), this);   
                         }
+                        if(gr.getCell(loc).getVehicle().isSelected);
+                        {
+                            g.drawImage(sel, locToPixX(r), locToPixY(c), this);
+                        }
                     }
                     else if(gr.getCell(loc).getVehicle().getPlayer()== arr.get(1))
                     {
-                        g.drawImage(ytank,locToPixX(r),locToPixY(c), this);
+                        if(gr.getCell(loc).getVehicle().getLaser().isArmed())
+                        {
+                            g.drawImage(ylaz,locToPixX(r),locToPixY(c), this);
+                        }
+                        else if(gr.getCell(loc).getVehicle().getMissile().isArmed())
+                        {
+                            g.drawImage(ymis,locToPixX(r),locToPixY(c), this);
+                        }
+                        else
+                        {
+                            g.drawImage(ytank,locToPixX(r),locToPixY(c), this);   
+                        }
+                        if(gr.getCell(loc).getVehicle().isSelected);
+                        {
+                            g.drawImage(sel, locToPixX(r), locToPixY(c), this);
+                        }
                     }
                     else if(gr.getCell(loc).getVehicle().getPlayer()== arr.get(2))
                     {
-                        g.drawImage(ptank,locToPixX(r),locToPixY(c), this);
+                        if(gr.getCell(loc).getVehicle().getLaser().isArmed())
+                        {
+                            g.drawImage(plaz,locToPixX(r),locToPixY(c), this);
+                        }
+                        else if(gr.getCell(loc).getVehicle().getMissile().isArmed())
+                        {
+                            g.drawImage(pmis,locToPixX(r),locToPixY(c), this);
+                        }
+                        else
+                        {
+                            g.drawImage(ptank,locToPixX(r),locToPixY(c), this);   
+                        }
+                        if(gr.getCell(loc).getVehicle().isSelected);
+                        {
+                            g.drawImage(sel, locToPixX(r), locToPixY(c), this);
+                        }
                     }
                     else
                     {
-                        g.drawImage(rtank,locToPixX(r),locToPixY(c), this);
+                        if(gr.getCell(loc).getVehicle().getLaser().isArmed())
+                        {
+                            g.drawImage(rlaz,locToPixX(r),locToPixY(c), this);
+                        }
+                        else if(gr.getCell(loc).getVehicle().getMissile().isArmed())
+                        {
+                            g.drawImage(rmis,locToPixX(r),locToPixY(c), this);
+                        }
+                        else
+                        {
+                            g.drawImage(rtank,locToPixX(r),locToPixY(c), this);   
+                        }
+                        if(gr.getCell(loc).getVehicle().isSelected);
+                        {
+                            g.drawImage(sel, locToPixX(r), locToPixY(c), this);
+                        }
                     }
                 }
             }
