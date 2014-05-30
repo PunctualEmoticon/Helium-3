@@ -25,6 +25,8 @@
 package helium3;
 
 import equipment.*;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -115,5 +117,30 @@ public class Vehicle {
      */
     public Shield getShield() {
         return shield;
+    }
+    
+    /**
+     * Returns all the possible Locations this Vehicle can move to in one turn.
+     * 
+     * @param gr the Grid that this Vehicle is currently in.
+     * @param loc the Location that this Vehicle is currently at.
+     * @return a List of the possible Locations this Vehicle may move to in one
+     * turn of only moving.
+     */
+    public List<Location> getMoveLocations(Grid gr, Location loc) {
+        return gr.getLocationsAround(loc, moveRadius);
+    }
+    
+    /**
+     * Returns all the possible Locations this Vehicle can move to while also
+     * arming a Weapon, arming a Shield, or mining in the same turn (radius 2).
+     * 
+     * @param gr the Grid that this Vehicle is currently in.
+     * @param loc the Location that this Vehicle is currently at.
+     * @return a List of all the possible Locations this Vehicle may move to
+     * while arming a Weapon, arming a Shield, or mining.
+     */
+    public List<Location> getArmedMoveLocations(Grid gr, Location loc) {
+        return gr.getLocationsAround(loc, 2);
     }
 }
