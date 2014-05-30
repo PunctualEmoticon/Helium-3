@@ -72,6 +72,8 @@ public class NewFrame extends JFrame{
     private Image rmis;
     private Image ymis;
     private Image pmis;
+    int turn;
+    int currentPlayer;
     private ArrayList<Player> arr;
     
     public NewFrame(){
@@ -220,7 +222,9 @@ public class NewFrame extends JFrame{
         gr = new Grid(20, 20);
         arr = a;
         int turnCounter = 0;
-        
+        turn=0;
+        currentPlayer=0;
+                
         if(arr.size()==2)
         {
             JOptionPane.showMessageDialog(null ,arr.get(0).getName() + " is Green \n"
@@ -276,9 +280,20 @@ public class NewFrame extends JFrame{
        while(isRunningHappeningNow) 
        {
           
-           
-           
-           
+          if(turn == 5) 
+          {
+            if(currentPlayer == arr.size()-1)
+            {
+                currentPlayer = 0;
+            }
+            else
+            {
+                currentPlayer++;
+            }
+          }
+          
+          this.addMouseListener(new click());
+          
            if (turnCounter > 20)
            {
                isRunningHappeningNow = false;
@@ -309,40 +324,64 @@ public class NewFrame extends JFrame{
         @Override
         public void mouseClicked(MouseEvent e)
         {
-            int x = e.getX();
+          int x = e.getX();
             int y = e.getY();
-            int cellX = x/35;
-            int cellY = y/35;
+            int cellX = (x-5)/35;
+            int cellY = (y-30)/35;
             Location loc = new Location(cellX,cellY);
             if(gr.getCell(loc).isOccupied())
             {
-                
+                Vehicle vehicle = gr.getCell(loc).getVehicle();
+                if(!vehicle.hasPerformedAction && vehicle.getPlayer().equals(arr.get(currentPlayer)))
+                {
+                    turn++;
+                    vehicle.isSelected=true;
+                    GameActions act = new GameActions(vehicle,gr);
+                    act.gameMenu();
+                }
             }
-            
         }
 
         @Override
         public void mousePressed(MouseEvent e)
         {
-            
+            int x = e.getX();
+            int y = e.getY();
+            int cellX = x/35;
+            int cellY = y/35;
+            System.out.println(cellX + " " + cellY);
+            Location loc = new Location(cellX,cellY);
+            if(gr.getCell(loc).isOccupied())
+            {
+                Vehicle vehicle = gr.getCell(loc).getVehicle();
+                if(!vehicle.hasPerformedAction && vehicle.getPlayer().equals(arr.get(currentPlayer)))
+                {
+                    turn++;
+                    vehicle.isSelected=true;
+                    vehicle.hasPerformedAction = true;
+                    GameActions act = new GameActions(vehicle,gr);
+                    act.gameMenu();
+                }
+            }
+              
         }
 
         @Override
         public void mouseReleased(MouseEvent e) 
         {
-            
+            return;
         }
 
         @Override
         public void mouseEntered(MouseEvent e) 
         {
-            
+            return;
         }
 
         @Override
         public void mouseExited(MouseEvent e) 
         {
-            
+           return; 
         }
     }
 }

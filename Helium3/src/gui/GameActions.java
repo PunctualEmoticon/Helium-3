@@ -25,6 +25,8 @@
 package gui;
 
 import helium3.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 /**
  *
@@ -33,9 +35,13 @@ import javax.swing.*;
 public class GameActions 
 {
     Vehicle veh;
-    public GameActions(Vehicle v)
+    Grid gr;
+    JFrame frame;
+    
+    public GameActions(Vehicle v, Grid g)
     {
         veh = v;
+        gr = g;
     }
     
     public void gameMenu()
@@ -47,24 +53,36 @@ public class GameActions
         JButton jButton4 = new javax.swing.JButton();
         JButton jButton5 = new javax.swing.JButton();
         JButton jButton6 = new javax.swing.JButton();
-        JFrame frame = new JFrame("In Game Menu");
-        frame.setSize(250,250);
+        frame = new JFrame("In Game Menu");
+        frame.setSize(500,500);
 
-        frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        
 
         jLabel1.setText("Select your action");
 
         jButton1.setText("Move");
+        jButton1.addActionListener(new move());
 
         jButton2.setText("Mine");
-
+        jButton2.addActionListener(new mine());
         jButton3.setText("Arm Sheild");
-
+        jButton3.addActionListener(new sheild());
         jButton4.setText("Arm Missile");
-
+        jButton4.addActionListener(new misArm());
+        if(veh.getMissile().isArmed())
+        {
+            jButton4.setText("Fire Missle");
+            jButton4.addActionListener(new misFire());
+        }
         jButton5.setText("Arm Lazer");
-
+        jButton5.addActionListener(new lazArm());
+        if(veh.getLaser().isArmed())
+        {
+            jButton5.setText("Fire Laser");
+            jButton5.addActionListener(new lazFire());
+        }
         jButton6.setText("Kamikaze");
+        jButton6.addActionListener(new kamakazi());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(frame.getContentPane());
         frame.getContentPane().setLayout(layout);
@@ -116,5 +134,100 @@ public class GameActions
         );
         frame.setVisible(true);
     }
-            
+     
+    class misArm implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            veh.getMissile().arm();
+            frame.setVisible(false);
+        }
+        
+    }
+    class misFire implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            //todo
+            frame.setVisible(false);
+        }
+        
+    }
+    class move implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            //todo
+            frame.setVisible(false);
+        }
+        
+    }
+    class lazArm implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            veh.getLaser().arm();
+            frame.setVisible(false);
+        }
+        
+    }
+    class lazFire implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            frame.setVisible(false);
+            //todo
+        }
+        
+    }
+    class kamakazi implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            veh.getKamikaze().attack(gr, getLoc());
+            frame.setVisible(false);
+        }
+        
+    }
+    class mine implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            veh.getDrill().mine(gr, getLoc());
+            frame.setVisible(false);
+        }
+        
+    }
+    class sheild implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            veh.getShield().arm();
+            frame.setVisible(false);
+        }
+        
+    }
+    
+    public Location getLoc()
+    {
+        for(int i = 0; i < gr.getNumRows(); i++)
+        {
+            int x, y;
+            for(int j = 0; j< gr.getNumCols(); j++)
+            {
+                Location loc = new Location(i,j);
+                if(gr.getCell(loc).isOccupied())
+                {
+                    if(gr.getCell(loc).getVehicle().equals(veh))
+                    {
+                        return loc;
+                    }
+                }
+            }
+        } 
+        return null;
+    }
+        
+    
 }
