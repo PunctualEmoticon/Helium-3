@@ -70,7 +70,7 @@ public class Vehicle {
      * destroyed.
      */
     public boolean underAttackBy(Weapon weap) {
-        return true;
+        return getShield().blocks(weap);
     }
     
     /**
