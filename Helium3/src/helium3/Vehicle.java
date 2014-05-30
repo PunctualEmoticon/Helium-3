@@ -43,8 +43,8 @@ public class Vehicle {
     private int moveRadius;
     
     /**
-     * Class constructor.  Sets this Vehicle's move radius to 4 and stored
-     * helium-3 to 0.
+     * Class constructor.  Sets this Vehicle's move radius to 4.
+     * 
      * @param owner the Player that this Vehicle belongs to.
      */
     public Vehicle(Player owner) {
