@@ -26,7 +26,6 @@ package helium3;
 
 import equipment.*;
 import java.util.List;
-import java.util.ArrayList;
 
 /**
  *
