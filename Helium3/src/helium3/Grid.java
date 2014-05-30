@@ -307,12 +307,12 @@ public class Grid {
     }
 
     /**
-     * Adds random amounts of helium-3 to this Grid, centered around 3–6
+     * Adds random amounts of helium-3 to this Grid, centered around 7–10
      * hotspots.
      */
     public void generateHelium3() {
         List<Location> hotspots = new ArrayList<>();
-        int numHotspots = (int)(Math.random() * 3 + 4); //Between 4 and 7
+        int numHotspots = (int)(Math.random() * 4 + 7); //Between 7 and 10
         
         for (int i = 0; i < numHotspots; i++) {
             int row = (int)(Math.random() * getNumRows());
@@ -320,7 +320,7 @@ public class Grid {
             hotspots.add(new Location(col, row));
         }
         for (Location spot : hotspots) {
-            depositHelium3(spot, 10_000);
+            depositHelium3(spot, 3000);
         }
     }
     
@@ -338,15 +338,20 @@ public class Grid {
         
         int i = 0; //List index, leads to first deposit always in center
         while (amount > 0) {
-            //Anywhere between 1 and all the helium-3
-            int depositAmount = (int)(Math.random() * amount + 1);
+            int depositAmount;
+            //Deposits between 1 and either 1000 or all of amount, whichever is
+            //less
+            if (amount < 1000) {
+                depositAmount = (int)(Math.random() * amount + 1);
+            } else {
+                depositAmount = (int)(Math.random() * 1000 + 1);
+            }
             getCell(locNeighbors.get(i)).changeHelium3Amount(depositAmount);
             amount -= depositAmount;
             
             //i is randomly set to new locNeighbors element
             i = (int)(Math.random() * locNeighbors.size());
         }
-        getCell(loc).changeHelium3Amount(1000);
     }
     
     /**

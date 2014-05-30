@@ -101,6 +101,7 @@ public class NewFrame extends JFrame{
         dbg = dbImage.getGraphics();
         paintComponent(dbg);
         g.drawImage(dbImage, 3, 25, this);
+        System.out.println(gr);  //For diagnostics, can be removed
     }
     public void paintComponent(Graphics g){
         
