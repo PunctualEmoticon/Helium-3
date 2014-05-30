@@ -149,6 +149,8 @@ public class NewFrame extends JFrame{
     {
         gr = new Grid(20, 20);
         arr = a;
+        int turnCounter = 0;
+        
         if(arr.size()==2)
         {
             JOptionPane.showMessageDialog(null ,arr.get(0).getName() + " is Green \n"
@@ -205,6 +207,10 @@ public class NewFrame extends JFrame{
        {
            
            
+           if (turnCounter > 20) {
+               isRunningHappeningNow = false;
+           }
+           turnCounter++;
            
            try{
                Thread.sleep(100);
