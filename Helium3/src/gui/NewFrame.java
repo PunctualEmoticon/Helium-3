@@ -275,18 +275,9 @@ public class NewFrame extends JFrame{
         
        while(isRunningHappeningNow) 
        {
-           for(int i = 0; i < arr.size(); i++)
-           {
-               for(int j = 0; j < arr.get(i).getVehicleList().size();j++ )
-               {
-                   a.get(i).getVehicleList().get(j).isSelected= true;
-                   GameActions gamemenu = new GameActions(a.get(i).getVehicleList().get(j));
-                   gamemenu.gameMenu();
-                   
-                   a.get(i).getVehicleList().get(j).isSelected = false;
-               }
-           }
           
+           
+           
            
            if (turnCounter > 20)
            {
