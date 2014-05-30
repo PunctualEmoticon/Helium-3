@@ -109,7 +109,7 @@ public class NewFrame extends JFrame{
         dbg = dbImage.getGraphics();
         paintComponent(dbg);
         g.drawImage(dbImage, 3, 25, this);
-        System.out.println(gr);  //For diagnostics, can be removed
+        //System.out.println(gr);  //For diagnostics, can be removed
     }
     public void paintComponent(Graphics g){
         
@@ -145,7 +145,7 @@ public class NewFrame extends JFrame{
                         {
                             g.drawImage(gtank,locToPixX(r),locToPixY(c), this);   
                         }
-                        if(gr.getCell(loc).getVehicle().isSelected);
+                        if(gr.getCell(loc).getVehicle().isSelected)
                         {
                             g.drawImage(sel, locToPixX(r), locToPixY(c), this);
                         }
@@ -164,7 +164,7 @@ public class NewFrame extends JFrame{
                         {
                             g.drawImage(ytank,locToPixX(r),locToPixY(c), this);   
                         }
-                        if(gr.getCell(loc).getVehicle().isSelected);
+                        if(gr.getCell(loc).getVehicle().isSelected)
                         {
                             g.drawImage(sel, locToPixX(r), locToPixY(c), this);
                         }
@@ -183,7 +183,7 @@ public class NewFrame extends JFrame{
                         {
                             g.drawImage(ptank,locToPixX(r),locToPixY(c), this);   
                         }
-                        if(gr.getCell(loc).getVehicle().isSelected);
+                        if(gr.getCell(loc).getVehicle().isSelected)
                         {
                             g.drawImage(sel, locToPixX(r), locToPixY(c), this);
                         }
@@ -202,7 +202,7 @@ public class NewFrame extends JFrame{
                         {
                             g.drawImage(rtank,locToPixX(r),locToPixY(c), this);   
                         }
-                        if(gr.getCell(loc).getVehicle().isSelected);
+                        if(gr.getCell(loc).getVehicle().isSelected)
                         {
                             g.drawImage(sel, locToPixX(r), locToPixY(c), this);
                         }
@@ -216,6 +216,7 @@ public class NewFrame extends JFrame{
     
     public void makeRunHappen(ArrayList<Player> a)
     {
+        isRunningHappeningNow= true;
         gr = new Grid(20, 20);
         arr = a;
         int turnCounter = 0;
@@ -274,9 +275,21 @@ public class NewFrame extends JFrame{
         
        while(isRunningHappeningNow) 
        {
+           for(int i = 0; i < arr.size(); i++)
+           {
+               for(int j = 0; j < arr.get(i).getVehicleList().size();j++ )
+               {
+                   a.get(i).getVehicleList().get(j).isSelected= true;
+                   GameActions gamemenu = new GameActions(a.get(i).getVehicleList().get(j));
+                   gamemenu.gameMenu();
+                   
+                   a.get(i).getVehicleList().get(j).isSelected = false;
+               }
+           }
+          
            
-           
-           if (turnCounter > 20) {
+           if (turnCounter > 20)
+           {
                isRunningHappeningNow = false;
            }
            turnCounter++;
@@ -312,7 +325,7 @@ public class NewFrame extends JFrame{
             Location loc = new Location(cellX,cellY);
             if(gr.getCell(loc).isOccupied())
             {
-                Vehicle ve = gr.getCell(loc).getVehicle();
+                
             }
             
         }
