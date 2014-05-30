@@ -176,6 +176,7 @@ public class GameActions
     {
         @Override
         public void actionPerformed(ActionEvent e) {
+            veh.getLaser().attack(gr, getLoc(), Integer.parseInt(JOptionPane.showInputDialog("Enter a direction. \n N = 0 \n NE = 45 \n ect.")));
             frame.setVisible(false);
             //todo
         }
@@ -213,13 +214,13 @@ public class GameActions
     {
         for(int i = 0; i < gr.getNumRows(); i++)
         {
-            int x, y;
+            
             for(int j = 0; j< gr.getNumCols(); j++)
             {
                 Location loc = new Location(i,j);
                 if(gr.getCell(loc).isOccupied())
                 {
-                    if(gr.getCell(loc).getVehicle().equals(veh))
+                    if(gr.getCell(loc).getVehicle()==veh)
                     {
                         return loc;
                     }

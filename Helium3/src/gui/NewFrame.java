@@ -222,7 +222,7 @@ public class NewFrame extends JFrame{
         gr = new Grid(20, 20);
         arr = a;
         int turnCounter = 0;
-        turn=0;
+        turn=1;
         currentPlayer=0;
                 
         if(arr.size()==2)
@@ -280,15 +280,18 @@ public class NewFrame extends JFrame{
        while(isRunningHappeningNow) 
        {
           
-          if(turn == 5) 
+          if(turn > 4) 
           {
             if(currentPlayer == arr.size()-1)
             {
                 currentPlayer = 0;
+                
             }
             else
             {
                 currentPlayer++;
+                JOptionPane.showMessageDialog(null , "Next Player");
+
             }
           }
           
@@ -324,7 +327,7 @@ public class NewFrame extends JFrame{
         @Override
         public void mouseClicked(MouseEvent e)
         {
-          int x = e.getX();
+          /*int x = e.getX();
             int y = e.getY();
             int cellX = (x-5)/35;
             int cellY = (y-30)/35;
@@ -339,7 +342,7 @@ public class NewFrame extends JFrame{
                     GameActions act = new GameActions(vehicle,gr);
                     act.gameMenu();
                 }
-            }
+            }*/
         }
 
         @Override
@@ -348,7 +351,7 @@ public class NewFrame extends JFrame{
             int x = e.getX();
             int y = e.getY();
             int cellX = x/35;
-            int cellY = y/35;
+            int cellY = (y-15)/35;
             System.out.println(cellX + " " + cellY);
             Location loc = new Location(cellX,cellY);
             if(gr.getCell(loc).isOccupied())

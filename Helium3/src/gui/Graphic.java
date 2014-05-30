@@ -47,7 +47,7 @@ public class Graphic
     public void newGameGraphics()
     {
         //starts a window with grid in it. Charcters placed in starting positions
-        GridLayout layout =  new GridLayout(20,20);
+        
         frame.getContentPane().setBackground(Color.GRAY);
         frame.setSize(706,728);
         frame.setVisible(true);

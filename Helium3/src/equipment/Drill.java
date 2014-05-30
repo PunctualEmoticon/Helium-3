@@ -85,6 +85,7 @@ public class Drill extends Equipment {
             }
         }
         helium3 += sum;
+        System.out.println(sum);
         return sum;
     }
         
