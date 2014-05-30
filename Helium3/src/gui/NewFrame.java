@@ -68,6 +68,10 @@ public class NewFrame extends JFrame{
     private Image plaz;
     private Image glaz;
     private Image sel;
+    private Image gmis;
+    private Image rmis;
+    private Image ymis;
+    private Image pmis;
     private ArrayList<Player> arr;
     
     public NewFrame(){
@@ -90,6 +94,10 @@ public class NewFrame extends JFrame{
         rlaz = ImageIO.read(this.getClass().getResource("/resources/RedLazer.png"));
         plaz = ImageIO.read(this.getClass().getResource("/resources/PrplLazer.png"));
         glaz = ImageIO.read(this.getClass().getResource("/resources/GreenLazer.png"));
+        gmis = ImageIO.read(this.getClass().getResource("/resources/GreenMissile.png"));
+        rmis = ImageIO.read(this.getClass().getResource("/resources/RedMissile.png"));
+        ymis = ImageIO.read(this.getClass().getResource("/resources/YeloMissile.png"));
+        pmis = ImageIO.read(this.getClass().getResource("/resources/PrplMissile.png"));
         mis = ImageIO.read(this.getClass().getResource("/resources/missile.png"));
         sel = ImageIO.read(this.getClass().getResource("/resources/select.png"));
         }catch(Exception e){System.out.println("could not find image");}
@@ -125,7 +133,18 @@ public class NewFrame extends JFrame{
                 {
                     if(gr.getCell(loc).getVehicle().getPlayer()== arr.get(0))
                     {
-                        g.drawImage(gtank,locToPixX(r),locToPixY(c), this);
+                        if(gr.getCell(loc).getVehicle().getLaser().isArmed())
+                        {
+                            g.drawImage(glaz,locToPixX(r),locToPixY(c), this);
+                        }
+                        else if(gr.getCell(loc).getVehicle().getMissile().isArmed())
+                        {
+                            g.drawImage(gmis,locToPixX(r),locToPixY(c), this);
+                        }
+                        else
+                        {
+                            g.drawImage(gtank,locToPixX(r),locToPixY(c), this);   
+                        }
                     }
                     else if(gr.getCell(loc).getVehicle().getPlayer()== arr.get(1))
                     {
