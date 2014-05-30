@@ -67,6 +67,33 @@ public class Grid {
     public Cell getCell(Location loc) {
         return mat[loc.getY()][loc.getX()];
     }
+    
+    /**
+     * Moves the Vehicle located in startLoc to endLoc, while also disarming the
+     * Vehicle's Shield and Weapons.  Returns the success of the move attempt.
+     * If there is no Vehicle in startLoc or if endLoc is already occupied, this
+     * method will return false.
+     * 
+     * @param startLoc the Location where the Vehicle to be moved currently is.
+     * @param endLoc the Location where the Vehicle will end up.
+     * @return true if the move was successfully performed, false otherwise.
+     */
+    public boolean moveVehicle(Location startLoc, Location endLoc) {
+        Vehicle movingVehicle;
+        if (!getCell(startLoc).isOccupied() || getCell(endLoc).isOccupied()) {
+           return false;
+        } else {
+            movingVehicle = getCell(startLoc).getVehicle();
+        }
+        getCell(startLoc).setVehicle(null);
+        getCell(endLoc).setVehicle(movingVehicle);
+        
+        movingVehicle.getLaser().disarm();
+        movingVehicle.getMissile().disarm();
+        movingVehicle.getShield().disarm();
+        
+        return true;
+    }
 
     /**
      * Returns the number of rows (the height) of this Grid.
