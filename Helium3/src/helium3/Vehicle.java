@@ -59,7 +59,7 @@ public class Vehicle {
         missile = new Missile();
         moveRadius = 4;
         isSelected = false;
-        hasPerformedAction = false;
+        //hasPerformedAction = false;
         isMoving= false;
         missileTime = false;        
     }

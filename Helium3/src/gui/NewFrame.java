@@ -370,22 +370,19 @@ public class NewFrame extends JFrame{
             gr.getCell(new Location(2, gr.getNumRows() - 2)).setVehicle(a.get(3).getVehicleList().get(3));
             gr.getCell(new Location(2, gr.getNumRows() - 1)).setVehicle(a.get(3).getVehicleList().get(4));
         }
-        
-       while(isRunningHappeningNow) 
+        this.addMouseListener(new click());
+       /*while(isRunningHappeningNow) 
        {
            
-           this.addMouseListener(new click());
+           this.addMouseListener(new click());              //gave up on this game loop,looks like its up to players
+        
            for(int i = 0; i < 21;i++)
            {
                for(int j = 0; j < arr.size(); j++)
                {
                    for(int k = 0; k < arr.get(j).getVehicleList().size();k++)
                    {
-                       Turn t = new Turn(arr.get(j));
-                       if(t.go())
-                       {
-                           //Filler test comment
-                       }
+                       
                    }
                }
            }
@@ -394,7 +391,7 @@ public class NewFrame extends JFrame{
                Thread.sleep(100);
            }catch(Exception e){}
            this.repaint();
-       }
+       }*/
     }
     
     
@@ -429,17 +426,15 @@ public class NewFrame extends JFrame{
             if(gr.getCell(loc).isOccupied())
             {
                 Vehicle vehicle = gr.getCell(loc).getVehicle();
-                if(!vehicle.hasPerformedAction && vehicle.getPlayer().equals(arr.get(currentPlayer)))
-                {
-                    turn++;
-                    vehicle.isSelected=true;
-                    vehicle.hasPerformedAction = true;
-                    GameActions act = new GameActions(vehicle,gr, frame);
-                    act.gameMenu();
-                    repaint();
+                turn++;
+                vehicle.isSelected=true;
+                    //vehicle.hasPerformedAction = true;
+                GameActions act = new GameActions(vehicle,gr, frame);
+                act.gameMenu();
+                repaint();
                     
                     
-                }
+                
             }
               
         }
