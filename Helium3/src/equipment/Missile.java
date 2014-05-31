@@ -66,7 +66,8 @@ public class Missile extends Weapon {
             return;
         }
         if (thisGrid.getCell(attackLoc).isOccupied()) {
-            thisGrid.getCell(attackLoc).getVehicle().underAttackBy(this);
+            thisGrid.getCell(attackLoc).getVehicle().underAttackBy(
+                    thisGrid, this);
         }
     }
 }

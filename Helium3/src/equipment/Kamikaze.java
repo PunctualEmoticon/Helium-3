@@ -58,7 +58,10 @@ public class Kamikaze extends Weapon {
      */
     @Override
     public List<Location> getPossibleTargets(Grid thisGrid, Location thisLoc) {
-        return thisGrid.getLocationsAround(thisLoc, getUpgradeLevel() + 1);
+        List<Location> result =
+                thisGrid.getLocationsAround(thisLoc, getUpgradeLevel() + 1);
+        result.add(thisLoc);
+        return result;
     }
 
     /**
@@ -70,9 +73,9 @@ public class Kamikaze extends Weapon {
     public void attack(Grid thisGrid, Location thisLoc) {
         List<Location> locsToAttack = getPossibleTargets(thisGrid, thisLoc);
         for (Location attackLoc : locsToAttack) {
-            Cell attackCell = thisGrid.getCell(thisLoc);
+            Cell attackCell = thisGrid.getCell(attackLoc);
             if (attackCell.isOccupied()) {
-                attackCell.getVehicle().underAttackBy(this);
+                attackCell.getVehicle().underAttackBy(thisGrid, this);
             }
         }
     }

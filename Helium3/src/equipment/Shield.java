@@ -115,9 +115,17 @@ public class Shield extends Equipment {
             return false;
         }
         armed = false;
+        
+        /*
+        //Laser deflecting
         if (sword instanceof Laser && deflectDirection != -1) {
-            //incomplete, but will create new Laser for deflecting.
+            Laser deflectLaser = new Laser();
+            deflectLaser.arm();
+            deflectLaser.attack(null, null, deflectDirection);
+            deflectDirection = -1;
         }
+        */
+        
         return true;
     }
 }

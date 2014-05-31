@@ -61,8 +61,7 @@ public class Vehicle {
         isSelected = false;
         hasPerformedAction = false;
         isMoving= false;
-        missileTime = false;
-        
+        missileTime = false;        
     }
     
     /**
@@ -70,12 +69,30 @@ public class Vehicle {
      * appropriate actions (such as destroying this Vehicle, attacking another,
      * and so on).
      * 
+     * @param gr
      * @param weap the attacking weapon.
      * @return whether or not this Vehicle is destroyed by weap.  True if
      * destroyed.
      */
-    public boolean underAttackBy(Weapon weap) {
-        return getShield().blocks(weap);
+    public boolean underAttackBy(Grid gr, Weapon weap) {
+        boolean shieldBlocks = getShield().blocks(weap);
+        if (!shieldBlocks) { //If the Shield doesn't block, destroy this Vehicle
+            owningPlayer.getVehicleList().remove(this);
+            
+            //Remove this Vehicle from gr
+            scanLoop:
+            for (int row = 0; row < gr.getNumRows(); row++) {
+                for (int col = 0; col < gr.getNumCols(); col++) {
+                    Cell currentCell =
+                            gr.getCell(new Location(col, row));
+                    if (currentCell.getVehicle() == this) {
+                        currentCell.setVehicle(null);
+                        break scanLoop;
+                    }
+                }
+            }
+        }
+        return shieldBlocks;
     }
     
     /**

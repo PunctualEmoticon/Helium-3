@@ -194,7 +194,8 @@ public class Laser extends Weapon {
             if (gr.getCell(targetLoc).isOccupied()) {
                 //if statement attacks and checks if loop should continue
                 //if Vehicle is not destroyed, break.
-                if (!gr.getCell(targetLoc).getVehicle().underAttackBy(this)) {
+                if (!gr.getCell(targetLoc).getVehicle().underAttackBy(
+                        gr, this)) {
                     break;
                 }
             }
