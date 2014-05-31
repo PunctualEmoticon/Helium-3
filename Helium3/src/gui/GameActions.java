@@ -287,7 +287,11 @@ public class GameActions
             {
                 for(int i = 0; i < veh.getMoveLocations(gr, getLoc()).size(); i++)
                 {
+<<<<<<< HEAD
                     if(veh.getMoveLocations(gr, getLoc())== loc)
+=======
+                    if(veh.getMoveLocations(gr, getLoc())== veh.getArmedMoveLocations(gr, getLoc()).get(i))
+>>>>>>> 8cd6d6adbfde63ae369b0dae6f644e20d5b74220
                     {
                         gr.moveVehicle(getLoc(), loc);
                         veh.isMoving = false;
