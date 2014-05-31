@@ -144,6 +144,7 @@ public class GameActions
         @Override
         public void actionPerformed(ActionEvent e)
         {
+            veh.getLaser().disarm();
             veh.getMissile().arm();
             frame.setVisible(false);
             veh.isSelected = false;
@@ -156,7 +157,8 @@ public class GameActions
         @Override
         public void actionPerformed(ActionEvent e) {
             //todo
-            
+            veh.getMissile().disarm();
+            game1.repaint();
             frame.setVisible(false);
             veh.isSelected = false;
             game1.repaint();
@@ -184,6 +186,7 @@ public class GameActions
         @Override
         public void actionPerformed(ActionEvent e) {
             veh.getLaser().arm();
+            veh.getMissile().disarm();
             frame.setVisible(false);
             veh.isSelected = false;
             game1.repaint();
@@ -229,6 +232,8 @@ public class GameActions
         @Override
         public void actionPerformed(ActionEvent e) {
             veh.getShield().arm();
+            veh.getMissile().disarm();
+            veh.getLaser().disarm();
             frame.setVisible(false);
             veh.isSelected = false;
             game1.repaint();
