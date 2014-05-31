@@ -39,6 +39,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+
 /**
  *
  * @author Matt
@@ -208,6 +209,15 @@ public class NewFrame extends JFrame{
                                         locToPixY(gr.getCell(loc).getVehicle().getMoveLocations(gr, loc).get(i).getY()) +2, 34, 34);
                             }
                         }
+                        if(gr.getCell(loc).getVehicle().missileTime)
+                        {
+                            g.setColor(Color.red);
+                            for(int i = 0; i <gr.getCell(loc).getVehicle().getMissile().getPossibleTargets(gr, loc).size(); i++)
+                            {
+                                g.drawRect(locToPixX(gr.getCell(loc).getVehicle().getMissile().getPossibleTargets(gr, loc).get(i).getX())+2,
+                                        locToPixY(gr.getCell(loc).getVehicle().getMissile().getPossibleTargets(gr, loc).get(i).getY()) +2, 34, 34);
+                            }
+                        }
                         
                     }
                     else if(gr.getCell(loc).getVehicle().getPlayer()== arr.get(2))
@@ -241,6 +251,15 @@ public class NewFrame extends JFrame{
                                         locToPixY(gr.getCell(loc).getVehicle().getMoveLocations(gr, loc).get(i).getY()) +2, 34, 34);
                             }
                         }
+                        if(gr.getCell(loc).getVehicle().missileTime)
+                        {
+                            g.setColor(Color.red);
+                            for(int i = 0; i <gr.getCell(loc).getVehicle().getMissile().getPossibleTargets(gr, loc).size(); i++)
+                            {
+                                g.drawRect(locToPixX(gr.getCell(loc).getVehicle().getMissile().getPossibleTargets(gr, loc).get(i).getX())+2,
+                                        locToPixY(gr.getCell(loc).getVehicle().getMissile().getPossibleTargets(gr, loc).get(i).getY()) +2, 34, 34);
+                            }
+                        }
                     }
                     else
                     {
@@ -271,6 +290,15 @@ public class NewFrame extends JFrame{
                             {
                                 g.drawRect(locToPixX(gr.getCell(loc).getVehicle().getMoveLocations(gr, loc).get(i).getX())+2,
                                         locToPixY(gr.getCell(loc).getVehicle().getMoveLocations(gr, loc).get(i).getY()) +2, 34, 34);
+                            }
+                        }
+                        if(gr.getCell(loc).getVehicle().missileTime)
+                        {
+                            g.setColor(Color.red);
+                            for(int i = 0; i <gr.getCell(loc).getVehicle().getMissile().getPossibleTargets(gr, loc).size(); i++)
+                            {
+                                g.drawRect(locToPixX(gr.getCell(loc).getVehicle().getMissile().getPossibleTargets(gr, loc).get(i).getX())+2,
+                                        locToPixY(gr.getCell(loc).getVehicle().getMissile().getPossibleTargets(gr, loc).get(i).getY()) +2, 34, 34);
                             }
                         }
                     }
@@ -345,30 +373,22 @@ public class NewFrame extends JFrame{
         
        while(isRunningHappeningNow) 
        {
-          
-          if(turn > 4) 
-          {
-            if(currentPlayer == arr.size()-1)
-            {
-                currentPlayer = 0;
-                
-            }
-            else
-            {
-                currentPlayer++;
-                JOptionPane.showMessageDialog(null , "Next Player");
-
-            }
-          }
-          
-          this.addMouseListener(new click());
-          
-           if (turnCounter > 20)
+           this.addMouseListener(new click());
+           for(int i = 0; i < 21;i++)
            {
-               isRunningHappeningNow = false;
+               for(int j = 0; j < arr.size(); j++)
+               {
+                   for(int k = 0; k < arr.get(j).getVehicleList().size();k++)
+                   {
+                       Turn turn2 = new Turn(a.get(j));
+                       if(turn2.go())
+                       {
+                           
+                       }
+                   }
+               }
            }
-           turnCounter++;
-           
+           isRunningHappeningNow = false;
            try{
                Thread.sleep(100);
            }catch(Exception e){}

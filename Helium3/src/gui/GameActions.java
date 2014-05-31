@@ -332,6 +332,8 @@ public class GameActions
                         veh.getMissile().attack(gr, loc);
                         game1.repaint();
                         game1.removeMouseListener(this);
+                        veh.missileTime = false;
+                        game1.repaint();
                     }
                 }
             }
