@@ -383,7 +383,7 @@ public class NewFrame extends JFrame{
                        Turn turn2 = new Turn(a.get(j));
                        if(turn2.go())
                        {
-                           
+                           //Filler test comment
                        }
                    }
                }
