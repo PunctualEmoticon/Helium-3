@@ -175,7 +175,7 @@ public class Grid {
      */
     public List<Location> getLocationsNorthOf(Location loc) {
         List<Location> result = new ArrayList<>();
-        for (int row = loc.getY(); row >= 0; row--) {
+        for (int row = loc.getY()-1; row >= 0; row--) {
             result.add(new Location(loc.getX(), row));
         }
         return result;
@@ -205,7 +205,7 @@ public class Grid {
      */
     public List<Location> getLocationsWestOf(Location loc) {
         List<Location> result = new ArrayList<>();
-        for (int col = loc.getX(); col >= 0; col--) {
+        for (int col = loc.getX() - 1; col >= 0; col--) {
             result.add(new Location(col, loc.getY()));
         }
         return result;
