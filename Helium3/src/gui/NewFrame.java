@@ -373,6 +373,7 @@ public class NewFrame extends JFrame{
         
        while(isRunningHappeningNow) 
        {
+           
            this.addMouseListener(new click());
            for(int i = 0; i < 21;i++)
            {
@@ -380,8 +381,7 @@ public class NewFrame extends JFrame{
                {
                    for(int k = 0; k < arr.get(j).getVehicleList().size();k++)
                    {
-                       Turn turn2 = new Turn(a.get(j));
-                       if(turn2.go())
+                       
                        {
                            //Filler test comment
                        }
