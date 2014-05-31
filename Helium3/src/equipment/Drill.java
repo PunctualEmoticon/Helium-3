@@ -81,5 +81,14 @@ public class Drill extends Equipment {
         System.out.println(sum);
         return sum;
     }
-        
+    
+    /**
+     * Returns the value of all the helium-3 that this Drill has mined and
+     * stored.
+     * 
+     * @return this Drill's helium-3.
+     */
+    public int getStoredHelium3() {
+        return helium3;
+    }
 }

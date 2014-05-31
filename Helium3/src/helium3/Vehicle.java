@@ -76,16 +76,22 @@ public class Vehicle {
      */
     public boolean underAttackBy(Grid gr, Weapon weap) {
         boolean shieldBlocks = getShield().blocks(weap);
-        if (!shieldBlocks) { //If the Shield doesn't block, destroy this Vehicle
+        
+        //If the Shield doesn't block, drop helium-3 and destroy this Vehicle
+        if (!shieldBlocks) {
             owningPlayer.getVehicleList().remove(this);
             
             //Remove this Vehicle from gr
             scanLoop:
             for (int row = 0; row < gr.getNumRows(); row++) {
                 for (int col = 0; col < gr.getNumCols(); col++) {
-                    Cell currentCell =
-                            gr.getCell(new Location(col, row));
+                    Location currentLocation = new Location(col, row);
+                    Cell currentCell = gr.getCell(currentLocation);
+                                                          
                     if (currentCell.getVehicle() == this) {
+                        gr.depositHelium3(currentLocation,
+                            getDrill().getStoredHelium3());
+                        
                         currentCell.setVehicle(null);
                         break scanLoop;
                     }
