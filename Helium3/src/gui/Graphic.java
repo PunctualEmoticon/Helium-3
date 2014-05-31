@@ -51,7 +51,7 @@ public class Graphic
         frame.getContentPane().setBackground(Color.GRAY);
         frame.setSize(706,728);
         frame.setVisible(true);
-        frame.makeRunHappen(arr);
+        frame.makeRunHappen(arr,frame);
         frame.setResizable(false);
         
     }

@@ -42,6 +42,8 @@ public class Vehicle {
     private int moveRadius;
     public boolean isSelected;
     public boolean hasPerformedAction;
+    public boolean isMoving;
+    public boolean missileTime;
     
     /**
      * Class constructor.  Sets this Vehicle's move radius to 4.
@@ -58,6 +60,9 @@ public class Vehicle {
         moveRadius = 4;
         isSelected = false;
         hasPerformedAction = false;
+        isMoving= false;
+        missileTime = false;
+        
     }
     
     /**

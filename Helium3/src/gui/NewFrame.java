@@ -45,6 +45,7 @@ import javax.swing.*;
  */
 public class NewFrame extends JFrame{
     
+    NewFrame frame;
     private Image dbImage;
     private Graphics dbg;
     private Image back;
@@ -84,10 +85,10 @@ public class NewFrame extends JFrame{
         rtank = ImageIO.read(this.getClass().getResource("/resources/RedTank.png"));
         ptank = ImageIO.read(this.getClass().getResource("/resources/PrplTank.png"));
         ytank = ImageIO.read(this.getClass().getResource("/resources/YeloTank.png"));
-        gshield = ImageIO.read(this.getClass().getResource("/resources/shieldGreen.png"));
-        rshield = ImageIO.read(this.getClass().getResource("/resources/shieldRed.png"));
-        pshield = ImageIO.read(this.getClass().getResource("/resources/shieldPrpl.png"));
-        yshield = ImageIO.read(this.getClass().getResource("/resources/shieldYelo.png"));
+        gshield = ImageIO.read(this.getClass().getResource("/resources/GreenShield.png"));
+        rshield = ImageIO.read(this.getClass().getResource("/resources/RedShield.png"));
+        pshield = ImageIO.read(this.getClass().getResource("/resources/PrplShield.png"));
+        yshield = ImageIO.read(this.getClass().getResource("/resources/YeloShield.png"));
         gdrill = ImageIO.read(this.getClass().getResource("/resources/TankGreenDrill.png"));
         rdrill = ImageIO.read(this.getClass().getResource("/resources/TankRedDrill.png"));
         pdrill = ImageIO.read(this.getClass().getResource("/resources/TankPrplDrill.png"));
@@ -143,6 +144,10 @@ public class NewFrame extends JFrame{
                         {
                             g.drawImage(gmis,locToPixX(r),locToPixY(c), this);
                         }
+                        else if(gr.getCell(loc).getVehicle().getShield().isArmed())
+                        {
+                            g.drawImage(gshield,locToPixX(r),locToPixY(c), this);
+                        }
                         else
                         {
                             g.drawImage(gtank,locToPixX(r),locToPixY(c), this);   
@@ -150,6 +155,24 @@ public class NewFrame extends JFrame{
                         if(gr.getCell(loc).getVehicle().isSelected)
                         {
                             g.drawImage(sel, locToPixX(r), locToPixY(c), this);
+                        }
+                        if(gr.getCell(loc).getVehicle().isMoving)
+                        {
+                            g.setColor(Color.red);
+                            for(int i = 0; i <gr.getCell(loc).getVehicle().getMoveLocations(gr, loc).size(); i++)
+                            {
+                                g.drawRect(locToPixX(gr.getCell(loc).getVehicle().getMoveLocations(gr, loc).get(i).getX())+2,
+                                        locToPixY(gr.getCell(loc).getVehicle().getMoveLocations(gr, loc).get(i).getY()) +2, 34, 34);
+                            }
+                        }
+                        if(gr.getCell(loc).getVehicle().missileTime)
+                        {
+                            g.setColor(Color.red);
+                            for(int i = 0; i <gr.getCell(loc).getVehicle().getMissile().getPossibleTargets(gr, loc).size(); i++)
+                            {
+                                g.drawRect(locToPixX(gr.getCell(loc).getVehicle().getMissile().getPossibleTargets(gr, loc).get(i).getX())+2,
+                                        locToPixY(gr.getCell(loc).getVehicle().getMissile().getPossibleTargets(gr, loc).get(i).getY()) +2, 34, 34);
+                            }
                         }
                     }
                     else if(gr.getCell(loc).getVehicle().getPlayer()== arr.get(1))
@@ -159,8 +182,13 @@ public class NewFrame extends JFrame{
                             g.drawImage(ylaz,locToPixX(r),locToPixY(c), this);
                         }
                         else if(gr.getCell(loc).getVehicle().getMissile().isArmed())
+                            
                         {
                             g.drawImage(ymis,locToPixX(r),locToPixY(c), this);
+                        }
+                         else if(gr.getCell(loc).getVehicle().getShield().isArmed())
+                        {
+                            g.drawImage(yshield,locToPixX(r),locToPixY(c), this);
                         }
                         else
                         {
@@ -170,6 +198,17 @@ public class NewFrame extends JFrame{
                         {
                             g.drawImage(sel, locToPixX(r), locToPixY(c), this);
                         }
+                      
+                        if(gr.getCell(loc).getVehicle().isMoving)
+                        {
+                            g.setColor(Color.red);
+                            for(int i = 0; i <gr.getCell(loc).getVehicle().getMoveLocations(gr, loc).size(); i++)
+                            {
+                                g.drawRect(locToPixX(gr.getCell(loc).getVehicle().getMoveLocations(gr, loc).get(i).getX())+2,
+                                        locToPixY(gr.getCell(loc).getVehicle().getMoveLocations(gr, loc).get(i).getY()) +2, 34, 34);
+                            }
+                        }
+                        
                     }
                     else if(gr.getCell(loc).getVehicle().getPlayer()== arr.get(2))
                     {
@@ -181,6 +220,10 @@ public class NewFrame extends JFrame{
                         {
                             g.drawImage(pmis,locToPixX(r),locToPixY(c), this);
                         }
+                         else if(gr.getCell(loc).getVehicle().getShield().isArmed())
+                        {
+                            g.drawImage(pshield,locToPixX(r),locToPixY(c), this);
+                        }
                         else
                         {
                             g.drawImage(ptank,locToPixX(r),locToPixY(c), this);   
@@ -188,6 +231,15 @@ public class NewFrame extends JFrame{
                         if(gr.getCell(loc).getVehicle().isSelected)
                         {
                             g.drawImage(sel, locToPixX(r), locToPixY(c), this);
+                        }
+                        if(gr.getCell(loc).getVehicle().isMoving)
+                        {
+                            g.setColor(Color.red);
+                            for(int i = 0; i <gr.getCell(loc).getVehicle().getMoveLocations(gr, loc).size(); i++)
+                            {
+                                g.drawRect(locToPixX(gr.getCell(loc).getVehicle().getMoveLocations(gr, loc).get(i).getX())+2,
+                                        locToPixY(gr.getCell(loc).getVehicle().getMoveLocations(gr, loc).get(i).getY()) +2, 34, 34);
+                            }
                         }
                     }
                     else
@@ -200,6 +252,10 @@ public class NewFrame extends JFrame{
                         {
                             g.drawImage(rmis,locToPixX(r),locToPixY(c), this);
                         }
+                         else if(gr.getCell(loc).getVehicle().getShield().isArmed())
+                        {
+                            g.drawImage(rshield,locToPixX(r),locToPixY(c), this);
+                        }
                         else
                         {
                             g.drawImage(rtank,locToPixX(r),locToPixY(c), this);   
@@ -207,6 +263,15 @@ public class NewFrame extends JFrame{
                         if(gr.getCell(loc).getVehicle().isSelected)
                         {
                             g.drawImage(sel, locToPixX(r), locToPixY(c), this);
+                        }
+                        if(gr.getCell(loc).getVehicle().isMoving)
+                        {
+                            g.setColor(Color.red);
+                            for(int i = 0; i <gr.getCell(loc).getVehicle().getMoveLocations(gr, loc).size(); i++)
+                            {
+                                g.drawRect(locToPixX(gr.getCell(loc).getVehicle().getMoveLocations(gr, loc).get(i).getX())+2,
+                                        locToPixY(gr.getCell(loc).getVehicle().getMoveLocations(gr, loc).get(i).getY()) +2, 34, 34);
+                            }
                         }
                     }
                 }
@@ -216,8 +281,9 @@ public class NewFrame extends JFrame{
     
     
     
-    public void makeRunHappen(ArrayList<Player> a)
+    public void makeRunHappen(ArrayList<Player> a, NewFrame b)
     {
+        frame = b;
         isRunningHappeningNow= true;
         gr = new Grid(20, 20);
         arr = a;
@@ -306,7 +372,7 @@ public class NewFrame extends JFrame{
            try{
                Thread.sleep(100);
            }catch(Exception e){}
-           repaint();
+           this.repaint();
        }
     }
     
@@ -327,22 +393,7 @@ public class NewFrame extends JFrame{
         @Override
         public void mouseClicked(MouseEvent e)
         {
-          /*int x = e.getX();
-            int y = e.getY();
-            int cellX = (x-5)/35;
-            int cellY = (y-30)/35;
-            Location loc = new Location(cellX,cellY);
-            if(gr.getCell(loc).isOccupied())
-            {
-                Vehicle vehicle = gr.getCell(loc).getVehicle();
-                if(!vehicle.hasPerformedAction && vehicle.getPlayer().equals(arr.get(currentPlayer)))
-                {
-                    turn++;
-                    vehicle.isSelected=true;
-                    GameActions act = new GameActions(vehicle,gr);
-                    act.gameMenu();
-                }
-            }*/
+         
         }
 
         @Override
@@ -351,7 +402,7 @@ public class NewFrame extends JFrame{
             int x = e.getX();
             int y = e.getY();
             int cellX = x/35;
-            int cellY = (y-15)/35;
+            int cellY = (y-20)/35;
             System.out.println(cellX + " " + cellY);
             Location loc = new Location(cellX,cellY);
             if(gr.getCell(loc).isOccupied())
@@ -362,8 +413,11 @@ public class NewFrame extends JFrame{
                     turn++;
                     vehicle.isSelected=true;
                     vehicle.hasPerformedAction = true;
-                    GameActions act = new GameActions(vehicle,gr);
+                    GameActions act = new GameActions(vehicle,gr, frame);
                     act.gameMenu();
+                    repaint();
+                    
+                    
                 }
             }
               

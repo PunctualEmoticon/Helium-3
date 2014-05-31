@@ -27,6 +27,8 @@ package gui;
 import helium3.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.*;
 /**
  *
@@ -37,11 +39,13 @@ public class GameActions
     Vehicle veh;
     Grid gr;
     JFrame frame;
+    NewFrame game1;
     
-    public GameActions(Vehicle v, Grid g)
+    public GameActions(Vehicle v, Grid g, NewFrame game)
     {
         veh = v;
         gr = g;
+        game1 = game;
     }
     
     public void gameMenu()
@@ -142,6 +146,8 @@ public class GameActions
         {
             veh.getMissile().arm();
             frame.setVisible(false);
+            veh.isSelected = false;
+            game1.repaint();
         }
         
     }
@@ -150,7 +156,10 @@ public class GameActions
         @Override
         public void actionPerformed(ActionEvent e) {
             //todo
+            
             frame.setVisible(false);
+            veh.isSelected = false;
+            game1.repaint();
         }
         
     }
@@ -159,7 +168,14 @@ public class GameActions
         @Override
         public void actionPerformed(ActionEvent e) {
             //todo
+            veh.isMoving = true;
+            game1.repaint();
+            //gr.moveVehicle(getLoc(), new Location(5,5));
             frame.setVisible(false);
+            game1.addMouseListener(new clickMove());
+            //veh.isSelected = false;
+            
+            game1.repaint();
         }
         
     }
@@ -169,6 +185,8 @@ public class GameActions
         public void actionPerformed(ActionEvent e) {
             veh.getLaser().arm();
             frame.setVisible(false);
+            veh.isSelected = false;
+            game1.repaint();
         }
         
     }
@@ -178,6 +196,8 @@ public class GameActions
         public void actionPerformed(ActionEvent e) {
             veh.getLaser().attack(gr, getLoc(), Integer.parseInt(JOptionPane.showInputDialog("Enter a direction. \n N = 0 \n NE = 45 \n ect.")));
             frame.setVisible(false);
+            veh.isSelected = false;
+            game1.repaint();
             //todo
         }
         
@@ -188,6 +208,8 @@ public class GameActions
         public void actionPerformed(ActionEvent e) {
             veh.getKamikaze().attack(gr, getLoc());
             frame.setVisible(false);
+            veh.isSelected = false;
+            game1.repaint();
         }
         
     }
@@ -197,6 +219,8 @@ public class GameActions
         public void actionPerformed(ActionEvent e) {
             veh.getDrill().mine(gr, getLoc());
             frame.setVisible(false);
+            veh.isSelected = false;
+            game1.repaint();
         }
         
     }
@@ -206,6 +230,8 @@ public class GameActions
         public void actionPerformed(ActionEvent e) {
             veh.getShield().arm();
             frame.setVisible(false);
+            veh.isSelected = false;
+            game1.repaint();
         }
         
     }
@@ -229,6 +255,105 @@ public class GameActions
         } 
         return null;
     }
-        
-    
+    class clickMove extends MouseAdapter
+    {
+
+        @Override
+        public void mouseClicked(MouseEvent e)
+        {
+         
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e)
+        {
+            int x = e.getX();
+            int y = e.getY();
+            int cellX = x/35;
+            int cellY = (y-20)/35;
+            System.out.println(cellX + " " + cellY);
+            Location loc = new Location(cellX,cellY);
+            if(!gr.getCell(loc).isOccupied())
+            {
+                gr.moveVehicle(getLoc(), loc);
+                veh.isMoving = false;
+                veh.isSelected = false;
+                game1.repaint();
+                game1.removeMouseListener(this);
+            }
+              
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) 
+        {
+            return;
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) 
+        {
+            return;
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) 
+        {
+           return; 
+        }
+    }
+     
+    class clickMis extends MouseAdapter
+    {
+
+        @Override
+        public void mouseClicked(MouseEvent e)
+        {
+         
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e)
+        {
+            veh.missileTime = true;
+            game1.repaint();
+            int x = e.getX();
+            int y = e.getY();
+            int cellX = x/35;
+            int cellY = (y-20)/35;
+            System.out.println(cellX + " " + cellY);
+            Location loc = new Location(cellX,cellY);
+            if(gr.getCell(loc).isOccupied())
+            {
+                for(int i = 0; i < veh.getMissile().getPossibleTargets(gr, loc).size(); i++)
+                {
+                    if(veh.getMissile().getPossibleTargets(gr, loc).get(i) == loc)
+                    {
+                        veh.getMissile().attack(gr, loc);
+                        game1.repaint();
+                        game1.removeMouseListener(this);
+                    }
+                }
+            }
+              
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) 
+        {
+            return;
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) 
+        {
+            return;
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) 
+        {
+           return; 
+        }
+    }
 }
