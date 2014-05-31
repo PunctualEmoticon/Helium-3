@@ -381,7 +381,8 @@ public class NewFrame extends JFrame{
                {
                    for(int k = 0; k < arr.get(j).getVehicleList().size();k++)
                    {
-                       
+                       Turn t = new Turn(arr.get(j));
+                       if(t.go())
                        {
                            //Filler test comment
                        }
