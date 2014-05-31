@@ -27,7 +27,7 @@ package equipment;
 import helium3.Grid;
 import helium3.Cell;
 import helium3.Location;
-import java.lang.Math;
+import java.util.List;
 
 /**
  * A drill extracts helium-3 from the squares surrounding it and records the
@@ -48,7 +48,7 @@ public class Drill extends Equipment {
     }
     
     /**
-     * Extracts 100 helium-3 from the surrounding square of Cells in the given
+     * Extracts 500 helium-3 from the surrounding square of Cells in the given
      * Grid and returns the extracted amount.  The size of the extraction square
      * depends on the Drill's upgrade level.  Each upgrade increases the radius
      * by 1.
@@ -59,29 +59,21 @@ public class Drill extends Equipment {
      */
     public int mine(Grid gr, Location loc) {
         int sum = 0;
-        final int extractAmount = 100; //positive number
+        final int extractAmount = 500; //positive number
         final int radius = super.getUpgradeLevel() + 1;
+        List<Location> miningLocs = gr.getLocationsAround(loc, radius);
         
-        //Nested loop for checking cells around loc
-        for (int row = loc.getY() - radius; row < loc.getY() + radius; row++) {
-            for (int col = loc.getX() - radius; col < loc.getX() + radius;
-                    col++) {
-                Location currentLoc = new Location(col, row);
-                
-                //Check because loc could be near the edge of the Grid
-                if (gr.isValid(currentLoc)) {
-                    Cell currentCell = gr.getCell(currentLoc);
-                    
-                    currentCell.changeHelium3Amount(-extractAmount);
-                    sum += extractAmount;
-                    //Check if Cell has run out of helium-3
-                    if (currentCell.getHelium3Amount() < 0) {
-                        int changeAmount =
-                                Math.abs(currentCell.getHelium3Amount());
-                        currentCell.changeHelium3Amount(changeAmount);
-                        sum -= changeAmount;
-                    }
-                }
+        for (Location currentLoc : miningLocs) {
+            Cell currentCell = gr.getCell(currentLoc);
+
+            currentCell.changeHelium3Amount(-extractAmount);
+            sum += extractAmount;
+            //Check if Cell has run out of helium-3
+            if (currentCell.getHelium3Amount() < 0) {
+                int changeAmount =
+                        Math.abs(currentCell.getHelium3Amount());
+                currentCell.changeHelium3Amount(changeAmount);
+                sum -= changeAmount;
             }
         }
         helium3 += sum;
