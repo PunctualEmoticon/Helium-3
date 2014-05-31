@@ -62,6 +62,7 @@ public class Drill extends Equipment {
         final int extractAmount = 500; //positive number
         final int radius = super.getUpgradeLevel() + 1;
         List<Location> miningLocs = gr.getLocationsAround(loc, radius);
+        miningLocs.add(loc);
         
         for (Location currentLoc : miningLocs) {
             Cell currentCell = gr.getCell(currentLoc);
