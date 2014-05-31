@@ -29,6 +29,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import javax.swing.*;
 /**
  *
@@ -40,12 +41,14 @@ public class GameActions
     Grid gr;
     JFrame frame;
     NewFrame game1;
+    ArrayList<Player> arr;
     
-    public GameActions(Vehicle v, Grid g, NewFrame game)
+    public GameActions(Vehicle v, Grid g, NewFrame game, ArrayList<Player> a)
     {
         veh = v;
         gr = g;
         game1 = game;
+        arr = a;
     }
     
     public void gameMenu()
@@ -224,6 +227,8 @@ public class GameActions
             frame.setVisible(false);
             veh.isSelected = false;
             game1.repaint();
+            HDisplay dis = new HDisplay();
+            dis.update(arr);
         }
         
     }

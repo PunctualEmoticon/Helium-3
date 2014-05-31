@@ -429,7 +429,7 @@ public class NewFrame extends JFrame{
                 turn++;
                 vehicle.isSelected=true;
                     //vehicle.hasPerformedAction = true;
-                GameActions act = new GameActions(vehicle,gr, frame);
+                GameActions act = new GameActions(vehicle,gr, frame,arr);
                 act.gameMenu();
                 repaint();
                     
