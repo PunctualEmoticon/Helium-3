@@ -285,11 +285,17 @@ public class GameActions
             Location loc = new Location(cellX,cellY);
             if(!gr.getCell(loc).isOccupied())
             {
-                gr.moveVehicle(getLoc(), loc);
-                veh.isMoving = false;
-                veh.isSelected = false;
-                game1.repaint();
-                game1.removeMouseListener(this);
+                for(int i = 0; i < veh.getMoveLocations(gr, getLoc()).size(); i++)
+                {
+                    if(veh.getMoveLocations(gr, getLoc())== veh.getArmedMoveLocations(gr, getLoc()).get(i))
+                    {
+                        gr.moveVehicle(getLoc(), loc);
+                        veh.isMoving = false;
+                        veh.isSelected = false;
+                        game1.repaint();
+                        game1.removeMouseListener(this);
+                    }
+                }
             }
               
         }

@@ -47,7 +47,7 @@ public class HDisplay
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
-        frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        
 
         jLabel1.setText("Helium 3 obtained");
 
