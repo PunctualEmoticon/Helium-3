@@ -66,5 +66,13 @@ public class Player {
     public List<Vehicle> getVehicleList() {
         return vehicleList;
     }
+    
+    public int getHe() {
+        int sum = 0;
+        for (Vehicle veh : vehicleList) {
+            sum += veh.getDrill().getStoredHelium3();
+        }
+        return sum;
+    }
 
 }
